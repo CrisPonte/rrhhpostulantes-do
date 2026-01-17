@@ -263,3 +263,22 @@ Gap closure plans created.
 2. Document to `.gsd/STATE.md` what was tried
 3. Recommend `/pause` for fresh session
 </context_hygiene>
+
+<related>
+## Related
+
+### Workflows
+| Command | Relationship |
+|---------|--------------|
+| `/plan` | Creates PLAN.md files that /execute runs |
+| `/verify` | Validates work after /execute completes |
+| `/debug` | Use when tasks fail verification |
+| `/pause` | Use after 3 debugging failures |
+
+### Skills
+| Skill | Purpose |
+|-------|---------|
+| `executor` | Detailed execution protocol |
+| `context-health-monitor` | 3-strike rule enforcement |
+| `empirical-validation` | Verification requirements |
+</related>

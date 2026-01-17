@@ -326,3 +326,17 @@ Files updated:
 ```
 
 </offer_next>
+
+<related>
+## Related
+
+### Workflows
+| Command | Relationship |
+|---------|--------------|
+| `/plan` | Use ARCHITECTURE.md from /map for planning context |
+
+### Skills
+| Skill | Purpose |
+|-------|---------|
+| `codebase-mapper` | Detailed mapping methodology |
+</related>

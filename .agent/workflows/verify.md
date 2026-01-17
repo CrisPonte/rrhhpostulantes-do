@@ -244,3 +244,20 @@ Never accept these as verification:
 | "File created" | `ls` or `dir` output |
 
 </evidence_requirements>
+
+<related>
+## Related
+
+### Workflows
+| Command | Relationship |
+|---------|--------------|
+| `/execute` | Run before /verify to implement work |
+| `/execute --gaps-only` | Fix issues found by /verify |
+| `/debug` | Diagnose verification failures |
+
+### Skills
+| Skill | Purpose |
+|-------|---------|
+| `verifier` | Detailed verification methodology |
+| `empirical-validation` | Evidence requirements |
+</related>

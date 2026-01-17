@@ -197,3 +197,20 @@ Options:
 ```
 
 </offer_next>
+
+<related>
+## Related
+
+### Workflows
+| Command | Relationship |
+|---------|--------------|
+| `/pause` | Use after 3 failed attempts |
+| `/resume` | Start fresh with documented state |
+| `/verify` | Re-verify after fixing issues |
+
+### Skills
+| Skill | Purpose |
+|-------|---------|
+| `debugger` | Detailed debugging methodology |
+| `context-health-monitor` | 3-strike rule |
+</related>

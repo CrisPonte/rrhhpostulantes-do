@@ -327,3 +327,20 @@ Plans:
 **Automation-first rule:** If Claude CAN do it, Claude MUST do it. Checkpoints are for verification AFTER automation.
 
 </task_types>
+
+<related>
+## Related
+
+### Workflows
+| Command | Relationship |
+|---------|--------------|
+| `/map` | Run before /plan to get codebase context |
+| `/execute` | Runs PLAN.md files created by /plan |
+| `/verify` | Validates executed plans |
+
+### Skills
+| Skill | Purpose |
+|-------|---------|
+| `planner` | Detailed planning methodology |
+| `plan-checker` | Validates plans before execution |
+</related>

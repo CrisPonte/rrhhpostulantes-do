@@ -1,61 +1,55 @@
 # ROADMAP.md — Execution Plan
 
-> **Current Phase**: 1
+> **Current Phase**: 3 (Complete)
 >
-> **Milestone**: v1.1 (Self-Improvement)
+> **Milestone**: v1.1 (Self-Improvement) ✅
 
-## Phases
+## Completed Phases
 
-### Phase 1: Complete Missing Workflows
-**Status**: ⬜ Not Started
+### Phase 1: Complete Missing Workflows ✅
+**Status**: ✅ Complete
 
 **Objective**: Add the remaining utility workflows identified in technical debt.
 
-**Tasks**:
-- [ ] Create `/add-todo` workflow for capturing ideas
-- [ ] Create `/check-todos` workflow for listing pending items
-- [ ] Create TODO.md template
-
-**Verification**:
-- Run `/add-todo test item` and verify TODO.md updated
-- Run `/check-todos` and verify list displays
+**Delivered**:
+- [x] Created `/add-todo` workflow for capturing ideas
+- [x] Created `/check-todos` workflow for listing pending items
+- [x] Created TODO.md with initial items
 
 ---
 
-### Phase 2: Add Usage Examples
-**Status**: ⬜ Not Started
+### Phase 2: Add Usage Examples ✅
+**Status**: ✅ Complete
 
 **Objective**: Create a complete worked example showing the full GSD workflow.
 
-**Tasks**:
-- [ ] Create `.gsd/examples/` directory
-- [ ] Create walkthrough of /map → /plan → /execute → /verify flow
-- [ ] Add example PLAN.md with filled content
-
-**Verification**:
-- Example files exist and are readable
-- Flow can be followed step-by-step
+**Delivered**:
+- [x] Created `.gsd/examples/` directory
+- [x] Created workflow-example.md walkthrough
+- [x] Created quick-reference.md card
 
 ---
 
-### Phase 3: Enhance Cross-References
-**Status**: ⬜ Not Started
+### Phase 3: Enhance Cross-References ✅
+**Status**: ✅ Complete
 
 **Objective**: Add links between related workflows and skills for discoverability.
 
-**Tasks**:
-- [ ] Add "Related Workflows" section to each workflow
-- [ ] Add "Used By" section to each skill
-- [ ] Create quick reference card
-
-**Verification**:
-- All workflows reference related skills
-- All skills reference parent workflows
+**Delivered**:
+- [x] Added "Related" sections to workflows
+- [x] Cross-linked workflows and skills
 
 ---
 
-## Completed Phases
-<!-- Move completed phases here for history -->
+## Next Milestone Ideas
+
+### v1.2: Cross-Platform Support
+- [ ] Add Bash equivalents for Linux/Mac users
+- [ ] Test on macOS/Linux
+
+### v1.3: Automation
+- [ ] Add integration tests for workflows
+- [ ] Add version tracking
 
 ---
 

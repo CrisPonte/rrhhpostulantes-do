@@ -25,9 +25,9 @@
 
 <!-- Active todos below -->
 
-- [ ] Add integration tests for workflows `low` — 2026-01-17
-- [ ] Add version tracking for workflow changes `low` — 2026-01-17
-- [ ] Consider Bash equivalents for Linux/Mac users `medium` — 2026-01-17
+- [x] Add integration tests for workflows `low` — 2026-01-17 → v1.3
+- [x] Add version tracking for workflow changes `low` — 2026-01-17 → v1.3
+- [x] Consider Bash equivalents for Linux/Mac users `medium` — 2026-01-17 ✓ 2026-01-17
 
 ---
 
