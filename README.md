@@ -32,11 +32,13 @@ People who want to describe what they want and have it built correctly — witho
 
 **PowerShell (Windows):**
 ```powershell
+# Open your project
+cd your-project
+
 # Clone the GSD template
 git clone https://github.com/toonight/get-shit-done-for-antigravity.git gsd-template
 
 # Copy to your project
-cd your-project
 Copy-Item -Recurse gsd-template\.agent .\
 Copy-Item -Recurse gsd-template\.gemini .\
 Copy-Item -Recurse gsd-template\.gsd .\
@@ -47,11 +49,13 @@ Remove-Item -Recurse -Force gsd-template
 
 **Bash (Linux/Mac):**
 ```bash
+# open your project
+cd your-project
+
 # Clone the GSD template
 git clone https://github.com/toonight/get-shit-done-for-antigravity.git gsd-template
 
 # Copy to your project
-cd your-project
 cp -r gsd-template/.agent ./
 cp -r gsd-template/.gemini ./
 cp -r gsd-template/.gsd ./
@@ -160,87 +164,12 @@ hij789k feat(phase-1): implement JWT cookie handling
 
 No "trust me, it works." Every verification produces evidence:
 
-| Change Type | Evidence Required |
-|-------------|-------------------|
-| API endpoint | curl output |
-| UI change | Screenshot |
-| Build | Command output |
-| Tests | Test results |
-
----
-
-## 🎮 Commands (25 Total)
-
-### Core Workflow
-| Command | Purpose |
-|---------|---------|
-| `/map` | Analyze codebase → ARCHITECTURE.md |
-| `/plan [N]` | Create PLAN.md files for phase N |
-| `/execute [N]` | Wave-based execution with atomic commits |
-| `/verify [N]` | Must-haves validation with proof |
-| `/debug [desc]` | Systematic debugging (3-strike rule) |
-
-### Project Setup
-| Command | Purpose |
-|---------|---------|
-| `/new-project` | Deep questioning → SPEC.md |
-| `/new-milestone` | Create milestone with phases |
-| `/complete-milestone` | Archive completed milestone |
-| `/audit-milestone` | Review milestone quality |
-
-### Phase Management
-| Command | Purpose |
-|---------|---------|
-| `/add-phase` | Add phase to end of roadmap |
-| `/insert-phase` | Insert phase (renumbers) |
-| `/remove-phase` | Remove phase (safety checks) |
-| `/discuss-phase` | Clarify scope before planning |
-| `/research-phase` | Deep technical research |
-| `/list-phase-assumptions` | Surface planning assumptions |
-| `/plan-milestone-gaps` | Create gap closure plans |
-
-### Navigation & State
-| Command | Purpose |
-|---------|---------|
-| `/progress` | Show current position |
-| `/pause` | Save state for session handoff |
-| `/resume` | Restore from last session |
-| `/add-todo` | Quick capture idea |
-| `/check-todos` | List pending items |
-
----
-
-## 💡 Daily Workflow
-
-**Without GSD:** "Add a feature" → Inconsistent code → Bugs → Debug loop → Frustration
-
-**With GSD:** "Add a feature" → SPEC → Plan → Atomic execution → Verification → ✅ Done
-
-### Typical Session
-
-```
-/resume              ← Load context from last session
-/progress            ← See where you left off
-/plan 2              ← Plan next phase
-/execute 2           ← Implement with atomic commits
-/verify 2            ← Prove it works (screenshots, tests)
-/pause               ← Save state for later
-```
-
-### Key Principle
-
-GSD forces **planning before coding**. Claude can't write code until `SPEC.md` says `FINALIZED`. This prevents building the wrong thing.
-
----
-
-## 🔒 Core Rules
-
-| Rule | Why It Matters |
-|------|----------------|
-| 🔒 **Planning Lock** | No code until SPEC.md is FINALIZED — prevents building wrong thing |
-| 💾 **State Persistence** | Update STATE.md after every task — memory across sessions |
-| 🧹 **Context Hygiene** | 3 failures → state dump → fresh session — prevents circular debugging |
-| ✅ **Empirical Validation** | Proof required — no "it should work" |
+| Change Type   | Evidence Required |
+|--------------|-------------------|
+| API endpoint  | curl output        |
+| UI change     | Screenshot         |
+| Build         | Command output     |
+| Tests         | Test results       |
 
 ---
 
