@@ -198,6 +198,49 @@ scripts/                  # Utility scripts
 
 ---
 
+## Token Efficiency Rules
+
+**Goal:** Minimize token consumption while maintaining output quality.
+
+### Loading Rules
+
+| Action | Rule |
+|--------|------|
+| Before reading file | Search first (grep, ripgrep) |
+| File >200 lines | Use outline, not full file |
+| File already understood | Reference summary, don't reload |
+| >5 files needed | Stop, reconsider approach |
+
+### Budget Thresholds
+
+| Usage | Action Required |
+|-------|-----------------|
+| 0-50% | Proceed normally |
+| 50-70% | Switch to outline mode, compress context |
+| 70%+ | State dump required, recommend fresh session |
+
+### Compression Protocol
+
+After understanding a file:
+1. Create summary in STATE.md or task notes
+2. Reference summary instead of re-reading
+3. Only reload specific sections if needed
+
+### Per-Wave Efficiency
+
+- Start each wave with minimal context
+- Load files just-in-time (when task requires)
+- Compress/summarize before moving to next wave
+- Document token usage in state snapshots (optional)
+
+**Anti-patterns:**
+- Loading files "just in case"
+- Re-reading files already understood
+- Full file reads when snippets suffice
+- Ignoring budget warnings
+
+---
+
 ## Quick Reference
 
 ```
