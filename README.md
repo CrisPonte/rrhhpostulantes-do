@@ -333,6 +333,38 @@ See [.agent/skills/context-fetch/SKILL.md](.agent/skills/context-fetch/SKILL.md)
 
 ---
 
+## 💰 Token Optimization
+
+**Principle:** Minimize token consumption while maintaining quality.
+
+### Skills Available
+
+| Skill | Purpose |
+|-------|---------|
+| `token-budget` | Track and manage token usage |
+| `context-compressor` | Compress context for efficiency |
+| `context-fetch` | Search-first loading |
+| `context-health-monitor` | Detect quality degradation |
+
+### Quick Tips
+
+1. **Search before loading** — Use `search_repo.ps1` first
+2. **Outline for large files** — Don't load files >200 lines fully
+3. **Summarize after understanding** — Document insights, don't re-read
+4. **Monitor budget** — Switch to outline mode at 50%
+
+### Budget Thresholds
+
+| Usage | Status | Action |
+|-------|--------|--------|
+| 0-50% | ✅ OK | Proceed normally |
+| 50-70% | ⚠️ Warning | Compress, use outlines |
+| 70%+ | 🛑 Critical | State dump required |
+
+See [docs/token-optimization-guide.md](docs/token-optimization-guide.md) for complete strategies.
+
+---
+
 ## 📁 File Structure
 
 ```
@@ -341,7 +373,7 @@ GSD-STYLE.md              # Complete style guide
 
 .agent/
 ├── workflows/            # 25 slash commands
-└── skills/               # 9 agent specializations (incl. context-fetch)
+└── skills/               # 11 agent specializations
 
 .gemini/
 └── GEMINI.md             # Gemini integration
@@ -403,6 +435,7 @@ Run validation scripts to verify GSD structure:
 - [GSD-STYLE.md](GSD-STYLE.md) — Complete style and conventions guide
 - [docs/model-selection-playbook.md](docs/model-selection-playbook.md) — Model selection guidance
 - [docs/runbook.md](docs/runbook.md) — Operational procedures
+- [docs/token-optimization-guide.md](docs/token-optimization-guide.md) — Token efficiency strategies
 - [Examples](.gsd/examples/) — Usage walkthroughs and quick reference
 - [Templates](.gsd/templates/) — Document templates for plans, verification, etc.
 
@@ -415,6 +448,7 @@ Run validation scripts to verify GSD structure:
 - **Proof over trust** — Screenshots and command outputs, not "looks right"
 - **Aggressive atomicity** — 2-3 tasks per plan, atomic commits
 - **Search before reading** — Don't load files blindly
+- **Token-efficient** — Every token counts
 - **Model-agnostic** — Works with any capable LLM
 - **No enterprise theater** — Solo dev + AI workflow only
 
