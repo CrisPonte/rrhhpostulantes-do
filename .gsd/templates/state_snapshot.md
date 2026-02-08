@@ -76,6 +76,17 @@ status: {complete | partial | blocked}
 ## Context for Fresh Session
 
 {Any information the next session needs — decisions made, blockers encountered, hypotheses to test}
+
+## Token Usage (Optional)
+
+| Metric | Value |
+|--------|-------|
+| Files loaded | {count} |
+| Est. tokens | {number} |
+| Budget used | {percentage}% |
+| Compression | {yes/no} |
+
+{Notes on token efficiency for this wave}
 ```
 
 ---
