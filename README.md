@@ -1,36 +1,89 @@
-# GSD for Antigravity
+<div align="center">
 
-> **Get Shit Done** — A spec-driven, context-engineered development methodology adapted for Google Antigravity.
+<img src="https://img.shields.io/badge/GSD-for_Antigravity-7B2D8E?style=for-the-badge&logoColor=white" alt="GSD for Antigravity" />
 
-[![Based on GSD](https://img.shields.io/badge/based%20on-GSD-blue)](https://github.com/glittercowboy/get-shit-done)
+# 🚀 Get Shit Done
 
----
+### A spec-driven, context-engineered development methodology
 
-## Why This Exists
+[![Version](https://img.shields.io/badge/version-1.4.0-00C853?style=flat-square)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-2196F3?style=flat-square)](LICENSE)
+[![Based on GSD](https://img.shields.io/badge/based%20on-GSD-7B2D8E?style=flat-square)](https://github.com/glittercowboy/get-shit-done)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Mac-FF6D00?style=flat-square)](#-cross-platform-support)
+[![Model Agnostic](https://img.shields.io/badge/models-any%20LLM-E91E63?style=flat-square)](#-multi-model-support)
 
-Vibecoding has a bad reputation. You describe what you want, AI generates code, and you get inconsistent garbage that falls apart at scale.
+<br/>
 
-GSD fixes that. It's the **context engineering layer** that makes AI coding reliable. Describe your idea, let the system extract everything it needs to know, and let the AI get to work.
+**Stop vibecoding. Start shipping.**
 
-**No enterprise roleplay.** No sprint ceremonies, story points, stakeholder syncs, or Jira workflows. Just an incredibly effective system for building cool stuff consistently.
+*Describe your idea → GSD extracts everything the AI needs → Watch it build correctly.*
 
-The complexity is in the system, not in your workflow.
+<br/>
 
----
+[Getting Started](#-getting-started) · [How It Works](#-how-it-works) · [Commands](#-commands-26-total) · [Documentation](#-documentation)
 
-## Who This Is For
-
-People who want to describe what they want and have it built correctly — without pretending they're running a 50-person engineering org.
-
-- Solo developers using AI coding assistants
-- Small teams who want structure without overhead
-- Anyone tired of AI generating inconsistent garbage
+</div>
 
 ---
 
-## 🚀 Getting Started
+## 🧠 The Problem
 
-**PowerShell (Windows):**
+> Vibecoding has a bad reputation — and it deserves it.
+
+You describe what you want, AI generates code, and you get **inconsistent garbage** that falls apart at scale.
+
+GSD fixes that. It's the **context engineering layer** that makes AI coding reliable.
+
+<table>
+<tr>
+<td width="50%">
+
+### ❌ Without GSD
+```
+"Add a feature"
+    → Inconsistent code
+    → Bugs everywhere
+    → Debug loop
+    → Frustration
+```
+
+</td>
+<td width="50%">
+
+### ✅ With GSD
+```
+"Add a feature"
+    → SPEC
+    → Plan
+    → Atomic execution
+    → Verification
+    → ✅ Done
+```
+
+</td>
+</tr>
+</table>
+
+> **No enterprise roleplay.** No sprint ceremonies, story points, stakeholder syncs, or Jira workflows.
+> Just an incredibly effective system for building cool stuff consistently.
+
+---
+
+## 👤 Who This Is For
+
+| | |
+|---|---|
+| 🧑‍💻 **Solo developers** | Using AI coding assistants and need consistency |
+| 👥 **Small teams** | Who want structure without enterprise overhead |
+| 😤 **Anyone** | Tired of AI generating inconsistent garbage |
+
+---
+
+## ⚡ Getting Started
+
+<details>
+<summary><b>🪟 PowerShell (Windows)</b></summary>
+
 ```powershell
 # Open your project
 cd your-project
@@ -53,9 +106,13 @@ Copy-Item -Force gsd-template\model_capabilities.yaml .\
 Remove-Item -Recurse -Force gsd-template
 ```
 
-**Bash (Linux/Mac):**
+</details>
+
+<details>
+<summary><b>🐧 Bash (Linux / Mac)</b></summary>
+
 ```bash
-# open your project
+# Open your project
 cd your-project
 
 # Clone the GSD template
@@ -76,63 +133,67 @@ cp gsd-template/model_capabilities.yaml ./
 rm -rf gsd-template
 ```
 
+</details>
+
 Then run `/new-project` and follow the prompts.
 
-> **💡 Tip:** You can also use `/install` from a clean project to automate the installation above.
+> [!TIP]
+> You can also use `/install` from a clean project to automate the installation above.
 
 ---
 
-## How It Works
+## 🔄 How It Works
 
-### 1. Initialize → Question → Spec
-```
-/new-project → Deep questioning → SPEC.md (finalized)
+```mermaid
+graph LR
+    A["🆕 /new-project"] --> B["📋 SPEC.md"]
+    B --> C["💬 /discuss-phase"]
+    C --> D["📐 /plan"]
+    D --> E["⚙️ /execute"]
+    E --> F["✅ /verify"]
+    F --> G{"More\nphases?"}
+    G -- Yes --> C
+    G -- No --> H["🏁 /complete-milestone"]
+
+    style A fill:#7B2D8E,color:#fff,stroke:none
+    style B fill:#00C853,color:#fff,stroke:none
+    style C fill:#2196F3,color:#fff,stroke:none
+    style D fill:#FF6D00,color:#fff,stroke:none
+    style E fill:#E91E63,color:#fff,stroke:none
+    style F fill:#00C853,color:#fff,stroke:none
+    style G fill:#FFC107,color:#000,stroke:none
+    style H fill:#7B2D8E,color:#fff,stroke:none
 ```
 
-### 2. Discuss (Optional) → Context
-```
-/discuss-phase 1 → Clarify scope → DECISIONS.md
-```
-
-### 3. Plan → Research → Tasks
-```
-/plan 1 → Discovery → PLAN.md with XML tasks
-```
-
-### 4. Execute → Verify → Commit
-```
-/execute 1 → Wave execution → Atomic commits
-/verify 1 → Must-haves check → Evidence captured
-```
-
-### 5. Repeat
-```
-/discuss-phase 2 → /plan 2 → /execute 2 → ...
-/complete-milestone → Next milestone
-```
+| Step | Command | Output |
+|:----:|---------|--------|
+| **1** | `/new-project` | Deep questioning → `SPEC.md` (finalized) |
+| **2** | `/discuss-phase N` | Clarify scope → `DECISIONS.md` |
+| **3** | `/plan N` | Technical discovery → `PLAN.md` with XML tasks |
+| **4** | `/execute N` | Wave-based execution → Atomic commits |
+| **5** | `/verify N` | Must-haves check → Evidence captured |
+| **6** | Repeat | Next phase or `/complete-milestone` |
 
 ---
 
-## Why It Works
+## 🧩 Why It Works
 
-### Context Engineering
+### 📦 Context Engineering
 
-The AI is incredibly powerful *if* you give it the context it needs. Most people don't.
+The AI is incredibly powerful **if** you give it the context it needs. Most people don't. GSD handles it for you:
 
-GSD handles it for you:
+| File | Role | Icon |
+|------|------|:----:|
+| `SPEC.md` | Project vision, always loaded | 🎯 |
+| `ARCHITECTURE.md` | System understanding | 🏗️ |
+| `ROADMAP.md` | Where you're going, what's done | 🗺️ |
+| `STATE.md` | Decisions, blockers, memory across sessions | 💾 |
+| `PLAN.md` | Atomic tasks with XML structure | 📐 |
+| `SUMMARY.md` | What happened, what changed | 📝 |
 
-| File | What it does |
-|------|--------------|
-| `SPEC.md` | Project vision, always loaded |
-| `ARCHITECTURE.md` | System understanding |
-| `ROADMAP.md` | Where you're going, what's done |
-| `STATE.md` | Decisions, blockers, position — memory across sessions |
-| `PLAN.md` | Atomic tasks with XML structure, verification steps |
-| `SUMMARY.md` | What happened, what changed |
+> Size limits based on where AI quality degrades. Stay under, get consistent excellence.
 
-Size limits based on where AI quality degrades. Stay under, get consistent excellence.
-
-### XML Prompt Formatting
+### 🏷️ XML Prompt Formatting
 
 Every plan is structured XML optimized for AI execution:
 
@@ -152,139 +213,164 @@ Every plan is structured XML optimized for AI execution:
 
 Precise instructions. No guessing. Verification built in.
 
-### Wave-Based Execution
+### 🌊 Wave-Based Execution
 
 Plans are grouped into waves based on dependencies:
 
-| Wave | Plans | Parallelization |
-|------|-------|-----------------|
-| 1 | Foundation tasks | Run together |
-| 2 | Depends on Wave 1 | Wait, then run together |
-| 3 | Depends on Wave 2 | Wait, then run together |
+```mermaid
+graph TD
+    subgraph W1["🌊 Wave 1 — Foundation"]
+        T1["Task A"] & T2["Task B"] & T3["Task C"]
+    end
+    subgraph W2["🌊 Wave 2 — Integration"]
+        T4["Task D"] & T5["Task E"]
+    end
+    subgraph W3["🌊 Wave 3 — Polish"]
+        T6["Task F"]
+    end
 
-Each executor gets fresh context. Your main session stays fast.
+    W1 --> W2 --> W3
 
-### Atomic Git Commits
+    style W1 fill:#E3F2FD,stroke:#2196F3,color:#000
+    style W2 fill:#FFF3E0,stroke:#FF6D00,color:#000
+    style W3 fill:#F3E5F5,stroke:#7B2D8E,color:#000
+    style T1 fill:#2196F3,color:#fff,stroke:none
+    style T2 fill:#2196F3,color:#fff,stroke:none
+    style T3 fill:#2196F3,color:#fff,stroke:none
+    style T4 fill:#FF6D00,color:#fff,stroke:none
+    style T5 fill:#FF6D00,color:#fff,stroke:none
+    style T6 fill:#7B2D8E,color:#fff,stroke:none
+```
+
+Each executor gets **fresh context**. Your main session stays fast.
+
+### 🔗 Atomic Git Commits
 
 Each task gets its own commit immediately after completion:
 
-```bash
+```
 abc123f feat(phase-1): create login endpoint
 def456g feat(phase-1): add password validation
 hij789k feat(phase-1): implement JWT cookie handling
 ```
 
-**Benefits:** 
-- Git bisect finds exact failing task
-- Each task independently revertable
-- Clear history for AI in future sessions
+> **Why?** Git bisect finds exact failing task · Each task independently revertable · Clear history for AI in future sessions
 
-### Empirical Verification
+### 🔬 Empirical Verification
 
 No "trust me, it works." Every verification produces evidence:
 
-| Change Type   | Evidence Required |
-|--------------|-------------------|
-| API endpoint  | curl output        |
-| UI change     | Screenshot         |
-| Build         | Command output     |
-| Tests         | Test results       |
+| Change Type | Evidence Required |
+|:---:|:---:|
+| 🌐 API endpoint | `curl` output |
+| 🖥️ UI change | Screenshot |
+| 🏗️ Build | Command output |
+| 🧪 Tests | Test results |
 
 ---
 
 ## 🎮 Commands (26 Total)
 
-> **Note:** Slash commands are typed directly as chat messages (e.g. send `/plan 1`). They are **not** IDE autocomplete features — if your editor shows "nothing found" when pressing `/`, that's normal. Just type the full command and send it. The AI will recognize and execute the workflow.
+> [!NOTE]
+> Slash commands are typed directly as chat messages (e.g. send `/plan 1`). They are **not** IDE autocomplete features — if your editor shows "nothing found" when pressing `/`, that's normal. Just type the full command and send it.
 
-### Core Workflow
+### 🔵 Core Workflow
+
 | Command | Purpose |
 |---------|---------|
-| `/map` | Analyze codebase → ARCHITECTURE.md |
-| `/plan [N]` | Create PLAN.md files for phase N |
-| `/execute [N]` | Wave-based execution with atomic commits |
-| `/verify [N]` | Must-haves validation with proof |
-| `/debug [desc]` | Systematic debugging (3-strike rule) |
+| `/map` | 🏗️ Analyze codebase → `ARCHITECTURE.md` |
+| `/plan [N]` | 📐 Create `PLAN.md` for phase N |
+| `/execute [N]` | ⚙️ Wave-based execution with atomic commits |
+| `/verify [N]` | ✅ Must-haves validation with proof |
+| `/debug [desc]` | 🐛 Systematic debugging (3-strike rule) |
 
-### Project Setup
+### 🟢 Project Setup
+
 | Command | Purpose |
 |---------|---------|
-| `/install` | Install GSD from GitHub |
-| `/new-project` | Deep questioning → SPEC.md |
-| `/new-milestone` | Create milestone with phases |
-| `/complete-milestone` | Archive completed milestone |
-| `/audit-milestone` | Review milestone quality |
+| `/install` | 📦 Install GSD from GitHub |
+| `/new-project` | 🆕 Deep questioning → `SPEC.md` |
+| `/new-milestone` | 🏁 Create milestone with phases |
+| `/complete-milestone` | 🎉 Archive completed milestone |
+| `/audit-milestone` | 🔍 Review milestone quality |
 
-### Phase Management
+### 🟠 Phase Management
+
 | Command | Purpose |
 |---------|---------|
-| `/add-phase` | Add phase to end of roadmap |
-| `/insert-phase` | Insert phase (renumbers) |
-| `/remove-phase` | Remove phase (safety checks) |
-| `/discuss-phase` | Clarify scope before planning |
-| `/research-phase` | Deep technical research |
-| `/list-phase-assumptions` | Surface planning assumptions |
-| `/plan-milestone-gaps` | Create gap closure plans |
+| `/add-phase` | ➕ Add phase to end of roadmap |
+| `/insert-phase` | 📌 Insert phase (renumbers) |
+| `/remove-phase` | ➖ Remove phase (safety checks) |
+| `/discuss-phase` | 💬 Clarify scope before planning |
+| `/research-phase` | 🔬 Deep technical research |
+| `/list-phase-assumptions` | 📋 Surface planning assumptions |
+| `/plan-milestone-gaps` | 🔧 Create gap closure plans |
 
-### Navigation & State
+### 🟣 Navigation & State
+
 | Command | Purpose |
 |---------|---------|
-| `/progress` | Show current position |
-| `/pause` | Save state for session handoff |
-| `/resume` | Restore from last session |
-| `/add-todo` | Quick capture idea |
-| `/check-todos` | List pending items |
+| `/progress` | 📊 Show current position |
+| `/pause` | ⏸️ Save state for session handoff |
+| `/resume` | ▶️ Restore from last session |
+| `/add-todo` | 📝 Quick capture idea |
+| `/check-todos` | 📋 List pending items |
+
+### 🔴 Utilities
+
+| Command | Purpose |
+|---------|---------|
+| `/help` | ❓ Show all available commands |
+| `/web-search` | 🌐 Search the web for decisions |
+| `/whats-new` | 📢 Show recent GSD changes |
+| `/update` | ⬆️ Update GSD to latest version |
 
 ---
 
-## 💡 Daily Workflow
+## 💡 Typical Session
 
-**Without GSD:** "Add a feature" → Inconsistent code → Bugs → Debug loop → Frustration
-
-**With GSD:** "Add a feature" → SPEC → Plan → Atomic execution → Verification → ✅ Done
-
-### Typical Session
-
-```
-/resume              ← Load context from last session
-/progress            ← See where you left off
-/discuss-phase 2     ← Clarify requirements (optional)
-/plan 2              ← Plan next phase
-/execute 2           ← Implement with atomic commits
-/verify 2            ← Prove it works (screenshots, tests)
-/pause               ← Save state for later
+```bash
+/resume              # ← Load context from last session
+/progress            # ← See where you left off
+/discuss-phase 2     # ← Clarify requirements (optional)
+/plan 2              # ← Plan next phase
+/execute 2           # ← Implement with atomic commits
+/verify 2            # ← Prove it works (screenshots, tests)
+/pause               # ← Save state for later
 ```
 
-### Key Principle
-
-GSD forces **planning before coding**. Claude can't write code until `SPEC.md` says `FINALIZED`. This prevents building the wrong thing.
+> [!IMPORTANT]
+> GSD forces **planning before coding**. The AI can't write code until `SPEC.md` says `FINALIZED`. This prevents building the wrong thing.
 
 ---
 
 ## 🔒 Core Rules
 
-| Rule | Why It Matters |
-|------|----------------|
-| 🔒 **Planning Lock** | No code until SPEC.md is FINALIZED — prevents building wrong thing |
-| 💾 **State Persistence** | Update STATE.md after every task — memory across sessions |
-| 🧹 **Context Hygiene** | 3 failures → state dump → fresh session — prevents circular debugging |
-| ✅ **Empirical Validation** | Proof required — no "it should work" |
+| | Rule | Why It Matters |
+|:---:|------|----------------|
+| 🔒 | **Planning Lock** | No code until `SPEC.md` is `FINALIZED` — prevents building wrong thing |
+| 💾 | **State Persistence** | Update `STATE.md` after every task — memory across sessions |
+| 🧹 | **Context Hygiene** | 3 failures → state dump → fresh session — prevents circular debugging |
+| ✅ | **Empirical Validation** | Proof required — no "it should work" |
 
 ---
 
 ## 🌍 Cross-Platform Support
 
-All workflow files include **dual syntax** — both PowerShell and Bash commands:
+All workflow files include **dual syntax** — both PowerShell and Bash commands.
 
-- **Windows users:** Use the PowerShell blocks
-- **Linux/Mac users:** Use the Bash blocks (some may require `jq` for JSON parsing)
+| Platform | Instructions |
+|:--------:|:------------:|
+| 🪟 **Windows** | Use PowerShell blocks |
+| 🐧 **Linux / Mac** | Use Bash blocks (may require `jq`) |
 
-**Note:** Git commands (`git add`, `git commit`, `git tag`) are cross-platform and work identically on all systems.
+> Git commands (`git add`, `git commit`, `git tag`) are cross-platform and work identically everywhere.
 
 ---
 
 ## 🤖 Multi-Model Support
 
-GSD is **model-agnostic**. Use any LLM that works in your environment.
+GSD is **model-agnostic** — use any LLM that works in your environment.
 
 ### Canonical Rules
 
@@ -292,52 +378,56 @@ All rules live in [PROJECT_RULES.md](PROJECT_RULES.md) — the single source of 
 
 ### Optional Adapters
 
-Model-specific enhancements (optional, never required):
+Model-specific enhancements *(optional, never required)*:
 
 ```
 adapters/
-├── CLAUDE.md    # Extended thinking, effort levels
-├── GEMINI.md    # Flash vs Pro selection
-└── GPT_OSS.md   # Function calling, context handling
+├── CLAUDE.md     # Extended thinking, effort levels
+├── GEMINI.md     # Flash vs Pro selection
+└── GPT_OSS.md    # Function calling, context handling
 ```
 
 ### Model Selection by Phase
 
 | Phase | Recommended | Why |
-|-------|-------------|-----|
-| Planning | Reasoning models | Complex decisions |
-| Implementation | Fast models | Iteration speed |
-| Debugging | Reasoning models | Hypothesis testing |
-| Review | Long-context models | Full diff analysis |
+|:-----:|:-----------:|-----|
+| 📋 Planning | Reasoning models | Complex decisions |
+| ⚙️ Implementation | Fast models | Iteration speed |
+| 🐛 Debugging | Reasoning models | Hypothesis testing |
+| 🔍 Review | Long-context models | Full diff analysis |
 
-See [docs/model-selection-playbook.md](docs/model-selection-playbook.md) for detailed guidance.
+> See [model-selection-playbook.md](docs/model-selection-playbook.md) for detailed guidance.
 
 ---
 
 ## 🔍 Search-First Mode
 
-**Principle:** Search before reading files completely.
+> **Principle:** Search before reading files completely.
 
 ### Why?
-- Reduces context pollution
-- Faster codebase understanding
-- Prevents reading irrelevant code
 
-### Setup (Optional)
+- 🎯 Reduces context pollution
+- ⚡ Faster codebase understanding
+- 🚫 Prevents reading irrelevant code
+
+<details>
+<summary><b>Setup (Optional)</b></summary>
 
 **PowerShell:**
 ```powershell
-.\scripts\setup_search.ps1    # Checks for ripgrep/fd
-.\scripts\search_repo.ps1 "pattern"  # Search wrapper
+.\scripts\setup_search.ps1          # Checks for ripgrep/fd
+.\scripts\search_repo.ps1 "pattern" # Search wrapper
 ```
 
 **Bash:**
 ```bash
-./scripts/setup_search.sh     # Checks for ripgrep/fd
-./scripts/search_repo.sh "pattern"   # Search wrapper
+./scripts/setup_search.sh           # Checks for ripgrep/fd
+./scripts/search_repo.sh "pattern"  # Search wrapper
 ```
 
-**No installation required** — falls back to built-in tools (Select-String/grep).
+> **No installation required** — falls back to built-in tools (`Select-String` / `grep`).
+
+</details>
 
 ### Workflow
 
@@ -346,82 +436,73 @@ See [docs/model-selection-playbook.md](docs/model-selection-playbook.md) for det
 3. **Evaluate results** — Which files matter?
 4. **Targeted read** — Only read relevant sections
 
-See [.agent/skills/context-fetch/SKILL.md](.agent/skills/context-fetch/SKILL.md) for the full skill.
-
 ---
 
 ## 💰 Token Optimization
 
-**Principle:** Minimize token consumption while maintaining quality.
+> **Principle:** Minimize token consumption while maintaining quality.
 
 ### Skills Available
 
 | Skill | Purpose |
 |-------|---------|
-| `token-budget` | Track and manage token usage |
-| `context-compressor` | Compress context for efficiency |
-| `context-fetch` | Search-first loading |
-| `context-health-monitor` | Detect quality degradation |
-
-### Quick Tips
-
-1. **Search before loading** — Use `search_repo.ps1` first
-2. **Outline for large files** — Don't load files >200 lines fully
-3. **Summarize after understanding** — Document insights, don't re-read
-4. **Monitor budget** — Switch to outline mode at 50%
+| 📊 `token-budget` | Track and manage token usage |
+| 🗜️ `context-compressor` | Compress context for efficiency |
+| 🔍 `context-fetch` | Search-first loading |
+| 🩺 `context-health-monitor` | Detect quality degradation |
 
 ### Budget Thresholds
 
 | Usage | Status | Action |
-|-------|--------|--------|
-| 0-50% | ✅ OK | Proceed normally |
-| 50-70% | ⚠️ Warning | Compress, use outlines |
-| 70%+ | 🛑 Critical | State dump required |
+|:-----:|:------:|--------|
+| 0–50% | 🟢 OK | Proceed normally |
+| 50–70% | 🟡 Warning | Compress, use outlines |
+| 70%+ | 🔴 Critical | State dump required |
 
-See [docs/token-optimization-guide.md](docs/token-optimization-guide.md) for complete strategies.
+> See [token-optimization-guide.md](docs/token-optimization-guide.md) for complete strategies.
 
 ---
 
 ## 📁 File Structure
 
 ```
-PROJECT_RULES.md          # ← Canonical rules (model-agnostic)
-GSD-STYLE.md              # Complete style guide
+📄 PROJECT_RULES.md          # ← Canonical rules (model-agnostic)
+📄 GSD-STYLE.md              # Complete style guide
 
-.agent/
-├── workflows/            # 25 slash commands
-└── skills/               # 11 agent specializations
+📂 .agent/
+├── 📂 workflows/            # 25 slash commands
+└── 📂 skills/               # 11 agent specializations
 
-.gemini/
-└── GEMINI.md             # Gemini integration
+📂 .gemini/
+└── 📄 GEMINI.md             # Gemini integration
 
-.gsd/
-├── SPEC.md               # ← START HERE (finalize first)
-├── ROADMAP.md            # Phases and progress
-├── STATE.md              # Session memory
-├── ARCHITECTURE.md       # System design (/map output)
-├── STACK.md              # Tech inventory
-├── DECISIONS.md          # Architecture Decision Records
-├── JOURNAL.md            # Session log
-├── TODO.md               # Quick capture
-├── templates/            # Document templates
-└── examples/             # Usage walkthroughs
+📂 .gsd/
+├── 📄 SPEC.md               # ← START HERE (finalize first)
+├── 📄 ROADMAP.md            # Phases and progress
+├── 📄 STATE.md              # Session memory
+├── 📄 ARCHITECTURE.md       # System design (/map output)
+├── 📄 STACK.md              # Tech inventory
+├── 📄 DECISIONS.md          # Architecture Decision Records
+├── 📄 JOURNAL.md            # Session log
+├── 📄 TODO.md               # Quick capture
+├── 📂 templates/            # Document templates
+└── 📂 examples/             # Usage walkthroughs
 
-adapters/                 # Optional model-specific enhancements
-├── CLAUDE.md
-├── GEMINI.md
-└── GPT_OSS.md
+📂 adapters/                 # Optional model-specific enhancements
+├── 📄 CLAUDE.md
+├── 📄 GEMINI.md
+└── 📄 GPT_OSS.md
 
-docs/                     # Operational documentation
-├── model-selection-playbook.md
-└── runbook.md
+📂 docs/                     # Operational documentation
+├── 📄 model-selection-playbook.md
+└── 📄 runbook.md
 
-scripts/                  # Utility scripts
-├── validate-*.ps1/.sh    # Structure validators
-├── setup_search.ps1/.sh  # Search tool setup
-└── search_repo.ps1/.sh   # Search wrapper
+📂 scripts/                  # Utility scripts
+├── 📄 validate-*.ps1/.sh    # Structure validators
+├── 📄 setup_search.ps1/.sh  # Search tool setup
+└── 📄 search_repo.ps1/.sh   # Search wrapper
 
-model_capabilities.yaml   # Optional capability registry
+📄 model_capabilities.yaml   # Optional capability registry
 ```
 
 ---
@@ -430,45 +511,81 @@ model_capabilities.yaml   # Optional capability registry
 
 Run validation scripts to verify GSD structure:
 
-**PowerShell:**
+<details>
+<summary><b>🪟 PowerShell</b></summary>
+
 ```powershell
-.\scripts\validate-all.ps1      # Run all validators
+.\scripts\validate-all.ps1        # Run all validators
 .\scripts\validate-workflows.ps1  # Workflows only
 .\scripts\validate-skills.ps1     # Skills only
 ```
 
-**Bash:**
+</details>
+
+<details>
+<summary><b>🐧 Bash</b></summary>
+
 ```bash
-./scripts/validate-all.sh      # Run all validators
-./scripts/validate-workflows.sh  # Workflows only
-./scripts/validate-skills.sh     # Skills only
+./scripts/validate-all.sh         # Run all validators
+./scripts/validate-workflows.sh   # Workflows only
+./scripts/validate-skills.sh      # Skills only
 ```
+
+</details>
 
 ---
 
 ## 📚 Documentation
 
-- [PROJECT_RULES.md](PROJECT_RULES.md) — Canonical model-agnostic rules
-- [GSD-STYLE.md](GSD-STYLE.md) — Complete style and conventions guide
-- [docs/model-selection-playbook.md](docs/model-selection-playbook.md) — Model selection guidance
-- [docs/runbook.md](docs/runbook.md) — Operational procedures
-- [docs/token-optimization-guide.md](docs/token-optimization-guide.md) — Token efficiency strategies
-- [Examples](.gsd/examples/) — Usage walkthroughs and quick reference
-- [Templates](.gsd/templates/) — Document templates for plans, verification, etc.
+| Resource | Description |
+|----------|-------------|
+| [PROJECT_RULES.md](PROJECT_RULES.md) | Canonical model-agnostic rules |
+| [GSD-STYLE.md](GSD-STYLE.md) | Complete style and conventions guide |
+| [Model Selection Playbook](docs/model-selection-playbook.md) | Model selection guidance |
+| [Runbook](docs/runbook.md) | Operational procedures |
+| [Token Optimization Guide](docs/token-optimization-guide.md) | Token efficiency strategies |
+| [Examples](.gsd/examples/) | Usage walkthroughs and quick reference |
+| [Templates](.gsd/templates/) | Document templates for plans, verification |
 
 ---
 
 ## 🧠 Philosophy
 
-- **Plan before building** — SPEC.md matters more than you think
-- **Fresh context > polluted context** — State dumps prevent hallucinations
-- **Proof over trust** — Screenshots and command outputs, not "looks right"
-- **Aggressive atomicity** — 2-3 tasks per plan, atomic commits
-- **Search before reading** — Don't load files blindly
-- **Token-efficient** — Every token counts
-- **Model-agnostic** — Works with any capable LLM
-- **No enterprise theater** — Solo dev + AI workflow only
+<table>
+<tr>
+<td>🎯</td><td><b>Plan before building</b> — <code>SPEC.md</code> matters more than you think</td>
+</tr>
+<tr>
+<td>🧹</td><td><b>Fresh context > polluted context</b> — State dumps prevent hallucinations</td>
+</tr>
+<tr>
+<td>🔬</td><td><b>Proof over trust</b> — Screenshots and command outputs, not "looks right"</td>
+</tr>
+<tr>
+<td>⚛️</td><td><b>Aggressive atomicity</b> — 2–3 tasks per plan, atomic commits</td>
+</tr>
+<tr>
+<td>🔍</td><td><b>Search before reading</b> — Don't load files blindly</td>
+</tr>
+<tr>
+<td>💰</td><td><b>Token-efficient</b> — Every token counts</td>
+</tr>
+<tr>
+<td>🤖</td><td><b>Model-agnostic</b> — Works with any capable LLM</td>
+</tr>
+<tr>
+<td>🚫</td><td><b>No enterprise theater</b> — Solo dev + AI workflow only</td>
+</tr>
+</table>
 
 ---
 
-*Adapted from [glittercowboy/get-shit-done](https://github.com/glittercowboy/get-shit-done) for Google Antigravity*
+<div align="center">
+
+<sub>Adapted from <a href="https://github.com/glittercowboy/get-shit-done">glittercowboy/get-shit-done</a> for Google Antigravity</sub>
+
+<br/>
+
+[![GitHub](https://img.shields.io/badge/GitHub-toonight-181717?style=flat-square&logo=github)](https://github.com/toonight/get-shit-done-for-antigravity)
+
+</div>
