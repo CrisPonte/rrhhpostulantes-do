@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
 
 const PostulanteSchema = new mongoose.Schema({
-    _id: { type: String, default: uuidv4 },
+    _id: { type: String, default: randomUUID },
     // Basic info
     apellido: { type: String, required: true, trim: true },
     nombre: { type: String, required: true, trim: true },

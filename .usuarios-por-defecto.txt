@@ -1,0 +1,7 @@
+Administrador:
+Usuario: admin@hr-talent.local
+Contraseña: 123456
+
+Jefe de RRHH:
+Usuario: jefe@hr-talent.local
+Contraseña: 123456
