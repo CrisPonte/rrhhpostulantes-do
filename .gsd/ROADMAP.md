@@ -36,7 +36,7 @@
 **Requirements**: REQ-02, REQ-05, REQ-06
 
 ### Phase 5: UI Postulantes, Búsqueda Avanzada y Documentos (Full Stack)
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Construir y estilizar el formulario de carga, visualización, y edición del CV del postulante. Consumir correctamente la descarga y modificación de documentos, renderizar las opciones de búsqueda avanzadas y afinar el comportamiento transaccional del sistema.
 **Requirements**: REQ-01, REQ-02, REQ-03
 
