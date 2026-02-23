@@ -6,8 +6,7 @@ import Login from './pages/Login';
 
 import Dashboard from './pages/Dashboard';
 import PostulantesList from './pages/PostulantesList';
-
-// Placeholder Pages (will be developed in next plans)
+import PostulanteDetail from './pages/PostulanteDetail';
 
 function App() {
   return (
@@ -22,9 +21,11 @@ function App() {
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/postulantes" element={<PostulantesList />} />
+              <Route path="/postulantes/:id" element={<PostulanteDetail />} />
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Route>
           </Route>
+
 
           {/* Catch all */}
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
