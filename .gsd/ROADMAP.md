@@ -26,7 +26,7 @@
 **Requirements**: REQ-05, REQ-09, REQ-11
 
 ### Phase 3: Gestión de Postulantes (Backend & Sistema de Archivos)
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Crear la API RESTful completa de Postulantes, incluyendo validaciones complejas de los campos solicitados y gestión del sistema de archivos en `/storage/postulantes/` según las reglas de nomenclatura (apellido-nombre-dni) y bloqueo de ejecutables.
 **Requirements**: REQ-01, REQ-03, REQ-04
 
