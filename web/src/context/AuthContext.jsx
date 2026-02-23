@@ -1,16 +1,10 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useContext } from 'react';
 import authService from '../services/auth.service';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => authService.getCurrentUser());
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        // Just sync loading state on mount
-        setLoading(false);
-    }, []);
 
     const login = async (email, password) => {
         const data = await authService.login(email, password);
@@ -24,8 +18,8 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
-            {!loading && children}
+        <AuthContext.Provider value={{ user, login, logout }}>
+            {children}
         </AuthContext.Provider>
     );
 };

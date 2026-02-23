@@ -31,7 +31,7 @@
 **Requirements**: REQ-01, REQ-03, REQ-04
 
 ### Phase 4: Foundation Frontend (React/Tailwind) & Dashboard
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Establecer la estructura del proyecto React (Vite) con Tailwind CSS, ruteo básico con react-router, integración con contexto/autenticación para redireccionar `/login`, y consumo de los endpoints para desarrollar el Dashboard de KPI (Chart.js) y el listado de Postulantes.
 **Requirements**: REQ-02, REQ-05, REQ-06
 
