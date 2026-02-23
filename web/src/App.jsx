@@ -5,9 +5,9 @@ import DashboardLayout from './layouts/DashboardLayout';
 import Login from './pages/Login';
 
 import Dashboard from './pages/Dashboard';
+import PostulantesList from './pages/PostulantesList';
 
 // Placeholder Pages (will be developed in next plans)
-const PostulantesList = () => <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-100 min-h-[400px]">Lista de Postulantes</div>;
 
 function App() {
   return (
