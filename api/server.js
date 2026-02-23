@@ -21,6 +21,7 @@ const rolRoutes = require('./routes/roles.routes');
 const portalRoutes = require('./routes/portales.routes');
 const puestoRoutes = require('./routes/puestos.routes');
 const tituloRoutes = require('./routes/titulos.routes');
+const postulanteRoutes = require('./routes/postulantes.routes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
@@ -28,6 +29,7 @@ app.use('/api/roles', rolRoutes);
 app.use('/api/portales', portalRoutes);
 app.use('/api/puestos', puestoRoutes);
 app.use('/api/titulos', tituloRoutes);
+app.use('/api/postulantes', postulanteRoutes);
 
 // Basic health route
 app.get('/health', (req, res) => {
