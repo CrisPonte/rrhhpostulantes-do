@@ -82,6 +82,38 @@ class PostulanteController {
         }
     };
 
+    listFiles = async (req, res) => {
+        try {
+            const repo = getRepository('Postulante');
+            const item = await repo.findById(req.params.id);
+            if (!item) return res.status(404).json({ error: 'Postulante no encontrado' });
+
+            const files = storageService.listFiles(item.apellido, item.nombre, item.dni);
+            res.json(files);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    };
+
+    downloadFile = async (req, res) => {
+        try {
+            const repo = getRepository('Postulante');
+            const item = await repo.findById(req.params.id);
+            if (!item) return res.status(404).json({ error: 'Postulante no encontrado' });
+
+            const applicantPath = storageService.getApplicantPath(item.apellido, item.nombre, item.dni);
+            const filePath = require('path').join(applicantPath, req.params.filename);
+
+            if (!require('fs').existsSync(filePath)) {
+                return res.status(404).json({ error: 'Archivo no encontrado' });
+            }
+
+            res.download(filePath);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    };
+
     delete = async (req, res) => {
         try {
             const repo = getRepository('Postulante');

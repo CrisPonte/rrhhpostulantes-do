@@ -17,6 +17,9 @@ router.put('/:id', verifyToken, checkRole(['admin', 'jefe de rrhh']), postulante
 
 // File management
 router.post('/:id/files', verifyToken, checkRole(['admin', 'jefe de rrhh']), upload.single('archivo'), postulanteController.uploadFile);
+router.get('/:id/files', verifyToken, checkRole(['admin', 'jefe de rrhh', 'staff']), postulanteController.listFiles);
+router.get('/:id/files/:filename', verifyToken, checkRole(['admin', 'jefe de rrhh', 'staff']), postulanteController.downloadFile);
+
 
 
 // Restricted to admin only for hard delete (or soft delete)
