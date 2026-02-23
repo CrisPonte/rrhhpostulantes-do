@@ -21,7 +21,7 @@
 **Requirements**: REQ-07, REQ-08, REQ-10, REQ-11
 
 ### Phase 2: Seguridad, RBAC y Endpoints de Soporte
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Implementar encriptación bcrypt, autenticación JWT, roles de usuario, y el crud/endpoints básicos (`admin`, `jefe de rrhh`, `staff`) y crear los *seeder* necesarios.
 **Requirements**: REQ-05, REQ-09, REQ-11
 
