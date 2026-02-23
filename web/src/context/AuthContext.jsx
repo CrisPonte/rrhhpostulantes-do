@@ -4,14 +4,11 @@ import authService from '../services/auth.service';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => authService.getCurrentUser());
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const savedUser = authService.getCurrentUser();
-        if (savedUser) {
-            setUser(savedUser);
-        }
+        // Just sync loading state on mount
         setLoading(false);
     }, []);
 

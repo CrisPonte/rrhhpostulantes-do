@@ -4,8 +4,9 @@ import PrivateRoute from './components/PrivateRoute';
 import DashboardLayout from './layouts/DashboardLayout';
 import Login from './pages/Login';
 
+import Dashboard from './pages/Dashboard';
+
 // Placeholder Pages (will be developed in next plans)
-const Dashboard = () => <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-100 min-h-[400px]">Dashboard Content (KPIs)</div>;
 const PostulantesList = () => <div className="p-4 bg-white rounded-xl shadow-sm border border-gray-100 min-h-[400px]">Lista de Postulantes</div>;
 
 function App() {
