@@ -3,6 +3,7 @@ const RolRepository = require('./RolRepository');
 const PuestoRepository = require('./PuestoRepository');
 const TituloRepository = require('./TituloRepository');
 const PortalRepository = require('./PortalRepository');
+const PostulanteRepository = require('./PostulanteRepository');
 
 // Future-proofing the repository pattern
 const getRepository = (repoName) => {
@@ -16,6 +17,7 @@ const getRepository = (repoName) => {
             case 'Puesto': return new PuestoRepository();
             case 'Titulo': return new TituloRepository();
             case 'Portal': return new PortalRepository();
+            case 'Postulante': return new PostulanteRepository();
             default: throw new Error(`Repository ${repoName} not implemented for ${dbType}`);
         }
     }
