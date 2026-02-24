@@ -5,3 +5,14 @@ Contraseña: 123456
 Jefe de RRHH:
 Usuario: jefe@hr-talent.local
 Contraseña: 123456
+
+You can initiate the processes manually now using:
+npm run dev (in web)
+docker-compose up (at project base)
+docker-compose stop (parar)
+
+Ingresar desde 
+http://localhost:5173/ con el correo admin@hr-talent.local y la contraseña 123456.
+
+Github:
+https://github.com/CrisPonte/rrhh-postulantes
