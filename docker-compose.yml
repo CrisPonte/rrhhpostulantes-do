@@ -16,7 +16,9 @@ services:
       - BCRYPT_SECRET=another_super_secret_encryption_word
       - SESSION_EXPIRES=30m
       - STORAGE_PATH=/storage/postulantes
-      - CORS_ORIGIN=http://localhost,http://localhost:5173
+      # - CORS_ORIGIN=http://localhost,http://localhost:5173
+      # - CORS_ORIGIN=http ://64.181.170.115,http://64.181.170.115:80
+      - CORS_ORIGIN=http://localhost,http://64.181.170.115
     volumes:
       - type: bind
         source: ./storage
@@ -33,7 +35,12 @@ services:
     ports:
       - "80:80"
     environment:
-      - VITE_API_URL=http://localhost:5000/api
+      #- VITE_API_URL=http://localhost:5000/api
+      #- VITE_API_URL=http://64.181.170.115:5000/api
+      # Esta se cambia para que ande en desarrollo y en el site
+      # Al poner solo /api, le dices al navegador: "Busca la carpeta de la API en el mismo servidor donde estás cargando la página"
+      # Esto funciona igual en tu PC (localhost) y en Oracle (la IP pública) porque es una ruta relativa.
+      - VITE_API_URL=/api
     depends_on:
       - api
 

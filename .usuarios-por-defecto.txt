@@ -10,7 +10,12 @@ You can initiate the processes manually now using:
 npm run dev (in web)
 docker-compose up (at project base)
 docker-compose stop (parar)
+   (elimina los huérfanos)
 
+
+docker compose down (para todo)
+docker rmi rrhh-postulantes-web (borra la imagen)
+docker compose p -d --build (lo corre)
 
 rrhh_mongodb: Base de Datos.
 rrhh_api: Backend.
