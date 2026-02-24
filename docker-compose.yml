@@ -16,13 +16,26 @@ services:
       - BCRYPT_SECRET=another_super_secret_encryption_word
       - SESSION_EXPIRES=30m
       - STORAGE_PATH=/storage/postulantes
-      - CORS_ORIGIN=http://localhost:5173
+      - CORS_ORIGIN=http://localhost,http://localhost:5173
     volumes:
       - type: bind
         source: ./storage
         target: /storage
     depends_on:
       - mongodb
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: rrhh_web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+    depends_on:
+      - api
 
   mongodb:
     image: mongo:latest
@@ -33,18 +46,18 @@ services:
     volumes:
       - ~/rrhh-postulantes/mongodb_data:/data/db
 
-  postgres:
-    image: postgres:15-alpine
-    container_name: rrhh_postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: rrhh-postulantes
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+#  postgres:
+#    image: postgres:15-alpine
+#    container_name: rrhh_postgres
+#    restart: unless-stopped
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: rrhh-postulantes
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
 
-volumes:
-  postgres_data:
+#volumes:
+#  postgres_data:

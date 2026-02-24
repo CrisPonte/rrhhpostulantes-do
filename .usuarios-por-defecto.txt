@@ -11,6 +11,13 @@ npm run dev (in web)
 docker-compose up (at project base)
 docker-compose stop (parar)
 
+
+rrhh_mongodb: Base de Datos.
+rrhh_api: Backend.
+rrhh_web: Frontend (Nginx).
+
+
+
 Ingresar desde 
 http://localhost:5173/ con el correo admin@hr-talent.local y la contraseña 123456.
 
@@ -48,6 +55,10 @@ cd web
 npm run dev
 
 -------------------------------------------------------------------------------------------------------
+Para crear los primeros usuarios de la base:
+cd api
+npm run seed
+
 Para correr la importacion de datos desde SQL a MongoDB usando qryPostulantes ejecutar:
 cd api
 node scripts/importSqlToMongo.js
