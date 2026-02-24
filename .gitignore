@@ -25,3 +25,6 @@ web/.env
 # Temporary files
 *.tmp
 ~$*
+
+# MongoDB data
+mongodb_data/
