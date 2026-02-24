@@ -25,10 +25,16 @@ const getTitulos = async () => {
     return response.data;
 };
 
+const getRoles = async () => {
+    const response = await axios.get(`${API_URL}/roles`, getHeaders());
+    return response.data;
+};
+
 const supportService = {
     getPortales,
     getPuestos,
-    getTitulos
+    getTitulos,
+    getRoles
 };
 
 export default supportService;

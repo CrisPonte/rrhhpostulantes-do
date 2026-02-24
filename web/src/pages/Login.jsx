@@ -8,6 +8,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showForgotModal, setShowForgotModal] = useState(false);
 
     const { login } = useAuth();
     const navigate = useNavigate();
@@ -29,6 +30,29 @@ const Login = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+            {/* Forgot Password Modal */}
+            {showForgotModal && (
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4 animate-in fade-in duration-200">
+                    <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl scale-in-center animate-in zoom-in-95 duration-200">
+                        <div className="text-center">
+                            <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Lock size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Restablecer Contraseña</h3>
+                            <p className="text-gray-600 mb-6 text-sm">
+                                Por motivos de seguridad, para restablecer su contraseña por favor contacte al administrador del sistema o al departamento de Sistemas.
+                            </p>
+                            <button
+                                onClick={() => setShowForgotModal(false)}
+                                className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors"
+                            >
+                                Entendido
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="max-w-md w-full">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                     <div className="p-8">
@@ -88,7 +112,13 @@ const Login = () => {
                                     <input type="checkbox" className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 cursor-pointer" />
                                     <span className="text-gray-600 group-hover:text-gray-900 transition-colors">Recordarme</span>
                                 </label>
-                                <a href="#" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">¿Olvidó su contraseña?</a>
+                                <button
+                                    type="button"
+                                    onClick={() => setShowForgotModal(true)}
+                                    className="text-blue-600 font-semibold hover:text-blue-700 transition-colors"
+                                >
+                                    ¿Olvidó su contraseña?
+                                </button>
                             </div>
 
                             <button

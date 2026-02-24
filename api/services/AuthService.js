@@ -7,7 +7,7 @@ class AuthService {
         const usuarioRepo = getRepository('Usuario');
 
         // 1. Find the user
-        const usuario = await usuarioRepo.findByEmail(email);
+        const usuario = await usuarioRepo.findByEmail(email.trim().toLowerCase());
         if (!usuario) {
             throw new Error('Credenciales inválidas');
         }

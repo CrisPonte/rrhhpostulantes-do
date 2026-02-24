@@ -15,7 +15,7 @@ docker-compose stop (parar)
 
 docker compose down (para todo)
 docker rmi rrhh-postulantes-web (borra la imagen)
-docker compose p -d --build (lo corre)
+docker compose up -d --build (lo corre)
 
 rrhh_mongodb: Base de Datos.
 rrhh_api: Backend.

@@ -28,17 +28,32 @@ const DashboardLayout = () => {
                                     <LayoutDashboard size={20} />
                                     Dashboard
                                 </Link>
-                                <Link to="/postulantes" className="flex items-center gap-2 px-3 py-2 rounded-md font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    to="/postulantes"
+                                    className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors ${window.location.pathname === '/postulantes' ? 'text-blue-700 bg-blue-50' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                                >
                                     <Users size={20} />
                                     Postulantes
                                 </Link>
+                                {user.rol === 'admin' && (
+                                    <Link
+                                        to="/usuarios"
+                                        className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors ${window.location.pathname === '/usuarios' ? 'text-blue-700 bg-blue-50' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}
+                                    >
+                                        <Settings size={20} />
+                                        Usuarios
+                                    </Link>
+                                )}
                             </nav>
                         </div>
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+                            <Link
+                                to="/profile"
+                                className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors border border-blue-100"
+                            >
                                 <User size={16} />
                                 <span>{user.nombre} ({user.rol})</span>
-                            </div>
+                            </Link>
                             <button
                                 onClick={handleLogout}
                                 className="p-2 text-gray-500 hover:text-red-600 rounded-full hover:bg-red-50 transition-colors"

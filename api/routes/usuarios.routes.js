@@ -10,5 +10,7 @@ router.get('/:id', verifyToken, checkRole(['admin', 'jefe de rrhh']), usuarioCon
 router.post('/', verifyToken, checkRole(['admin', 'jefe de rrhh']), usuarioController.create);
 router.put('/:id', verifyToken, checkRole(['admin', 'jefe de rrhh']), usuarioController.update);
 router.delete('/:id', verifyToken, checkRole(['admin']), usuarioController.delete); // only admin can delete users completely (soft delete)
+router.post('/:id/reset-password', verifyToken, checkRole(['admin']), usuarioController.resetPassword);
+router.post('/change-password', verifyToken, usuarioController.changePassword);
 
 module.exports = router;

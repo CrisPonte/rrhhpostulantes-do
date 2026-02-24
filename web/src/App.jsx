@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import PostulantesList from './pages/PostulantesList';
 import PostulanteDetail from './pages/PostulanteDetail';
+import UserManagement from './pages/UserManagement';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -22,6 +24,15 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/postulantes" element={<PostulantesList />} />
               <Route path="/postulantes/:id" element={<PostulanteDetail />} />
+
+              {/* Profile - any logged in user */}
+              <Route path="/profile" element={<Profile />} />
+
+              {/* Admin only routes */}
+              <Route element={<PrivateRoute allowedRoles={['admin']} />}>
+                <Route path="/usuarios" element={<UserManagement />} />
+              </Route>
+
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Route>
           </Route>

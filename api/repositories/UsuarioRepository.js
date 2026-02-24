@@ -6,6 +6,15 @@ class UsuarioRepository extends MongoRepository {
         super(Usuario);
     }
 
+    async findAll(query = {}) {
+        const sanitizedQuery = { ...query, deleted: false };
+        return await this.model.find(sanitizedQuery).populate('rol').exec();
+    }
+
+    async findById(id) {
+        return await this.model.findOne({ _id: id, deleted: false }).populate('rol').exec();
+    }
+
     async findByEmail(email) {
         return await this.model.findOne({ email, deleted: false }).populate('rol').exec();
     }
