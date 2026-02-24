@@ -171,7 +171,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 lg:col-span-2">
-                    <h4 className="text-lg font-bold text-gray-900 mb-6">Demanda por Puesto</h4>
+                    <h4 className="text-lg font-bold text-gray-900 mb-6">Postulantes por Puesto</h4>
                     <div className="h-[300px]">
                         <Bar
                             data={puestoData}

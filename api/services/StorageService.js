@@ -57,9 +57,18 @@ class StorageService {
 
         const targetPath = path.join(applicantPath, file.originalname);
 
-        // Use fs.rename (if uploaded to temp) or fs.writeFileSync if buffer
+        // Use fs.copyFileSync + fs.unlinkSync as fallback for cross-device moves (EXDEV)
         if (file.path) {
-            fs.renameSync(file.path, targetPath);
+            try {
+                fs.renameSync(file.path, targetPath);
+            } catch (err) {
+                if (err.code === 'EXDEV') {
+                    fs.copyFileSync(file.path, targetPath);
+                    fs.unlinkSync(file.path);
+                } else {
+                    throw err;
+                }
+            }
         } else if (file.buffer) {
             fs.writeFileSync(targetPath, file.buffer);
         }

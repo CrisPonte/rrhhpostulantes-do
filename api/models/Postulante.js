@@ -11,7 +11,7 @@ const PostulanteSchema = new mongoose.Schema({
     provincia: {
         type: String,
         enum: [
-            'Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'CABA', 'Córdoba',
+            'Buenos Aires', 'CABA', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba',
             'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja',
             'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta', 'San Juan',
             'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero',

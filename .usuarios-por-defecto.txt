@@ -15,4 +15,39 @@ Ingresar desde
 http://localhost:5173/ con el correo admin@hr-talent.local y la contraseña 123456.
 
 Github:
+
 https://github.com/CrisPonte/rrhh-postulantes
+
+Actualizar cambios:
+ git add .
+ git commit -m "Update project before push"
+ git push origin main (o master)
+
+ Actualizar descargando todo de github,parado en el directorio: 
+ git pull
+
+-------------------------------------------------------------------------------------------------------
+El error que estás viendo en el navegador (ERR_CONNECTION_REFUSED) generalmente ocurre porque el servidor de desarrollo del frontend (Vite) no está ejecutándose, por lo que el navegador no puede conectarse al puerto 5173.
+
+Acabo de iniciar los servicios necesarios por ti:
+
+Inicié el backend y la base de datos con Docker (docker-compose up -d).
+Inicié el servicio web del frontend ejecutando npm install y luego npm run dev dentro de la carpeta web.
+La consola indica que Vite ya está corriendo en http://localhost:5173/.
+
+Si refrescas la página de tu navegador, la aplicación ya debería funcionar correctamente.
+
+Si en algún momento apagas la computadora o cierras las terminales y necesitas volver a iniciar la aplicación, puedes seguir estos dos pasos:
+
+Abrir una terminal en la raíz de tu proyecto (rrhh-postulantes) y ejecutar:
+powershell
+docker-compose up -d
+Abrir otra terminal, navegar a la carpeta de la interfaz (web) e iniciar el servidor de React/Vite:
+powershell
+cd web
+npm run dev
+
+-------------------------------------------------------------------------------------------------------
+Para correr la importacion de datos desde SQL a MongoDB usando qryPostulantes ejecutar:
+cd api
+node scripts/importSqlToMongo.js

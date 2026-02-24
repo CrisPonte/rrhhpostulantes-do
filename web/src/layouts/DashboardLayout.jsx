@@ -2,14 +2,14 @@ import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Users, FileText, Settings, LogOut, User } from 'lucide-react';
 
+import { useAuth } from '../context/AuthContext';
+
 const DashboardLayout = () => {
     const navigate = useNavigate();
-    // Placeholder for auth context
-    const user = { nombre: 'Admin', rol: 'admin' };
+    const { user, logout } = useAuth();
 
     const handleLogout = () => {
-        // Placeholder logout
-        console.log('Logging out...');
+        logout();
         navigate('/login');
     };
 
@@ -21,9 +21,7 @@ const DashboardLayout = () => {
                     <div className="flex justify-between h-16 items-center">
                         <div className="flex items-center gap-8">
                             <div className="flex-shrink-0 flex items-center">
-                                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                                    HR TALENT
-                                </span>
+                                <img src="/logo-tubhier.png" alt="Tubhier Logo" className="h-10 w-auto object-contain" />
                             </div>
                             <nav className="hidden md:flex space-x-4">
                                 <Link to="/dashboard" className="flex items-center gap-2 px-3 py-2 rounded-md font-medium text-gray-900 bg-gray-100 hover:bg-gray-200">
@@ -61,7 +59,7 @@ const DashboardLayout = () => {
             {/* Footer */}
             <footer className="bg-white border-t border-gray-200 py-4 mt-auto">
                 <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-                    © {new Date().getFullYear()} HR Talent Recruitment System. All rights reserved.
+                    © {new Date().getFullYear()} Tubhier Recruitment System. All rights reserved.
                 </div>
             </footer>
         </div>

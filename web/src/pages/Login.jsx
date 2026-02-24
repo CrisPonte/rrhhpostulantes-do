@@ -32,10 +32,8 @@ const Login = () => {
             <div className="max-w-md w-full">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                     <div className="p-8">
-                        <div className="text-center mb-10">
-                            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                                HR TALENT
-                            </h1>
+                        <div className="text-center mb-10 flex flex-col items-center">
+                            <img src="/logo-tubhier.png" alt="Tubhier Logo" className="h-16 w-auto object-contain mb-2" />
                             <p className="text-gray-500 mt-2 italic">Sistema de Gestión de Reclutamiento</p>
                         </div>
 
