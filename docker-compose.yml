@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: rrhh_api
     restart: unless-stopped
-    user: "1001:1001"
+    user: "1001:1001" # agregado por ChatGPT problemas de permisos
     ports:
       - "5000:5000"
     environment:

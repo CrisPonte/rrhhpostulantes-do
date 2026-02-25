@@ -4,7 +4,18 @@ const postulanteController = require('../controllers/PostulanteController');
 const { verifyToken } = require('../middlewares/auth.middleware');
 const { checkRole } = require('../middlewares/rbac.middleware');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' }); // Temp folder, storageService will move it
+
+
+// Cambio propuesto por ChatGPT problemas de persmisos
+const tempUploadPath = process.env.STORAGE_PATH || '/storage/postulantes';
+
+const upload = multer({
+    dest: path.join(tempUploadPath, 'tmp')
+});
+
+//const upload = multer({ dest: 'uploads/' }); // Temp folder, storageService will move it
+// Fin cambios GhatGPT
+
 
 
 // Public to all authenticated roles
