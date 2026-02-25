@@ -74,3 +74,19 @@ npm run seed
 Para correr la importacion de datos desde SQL a MongoDB usando qryPostulantes ejecutar:
 cd api
 node scripts/importSqlToMongo.js
+
+
+
+temas pendientes 
+
+Recordar, que la carpeta donde están los CVs la
+tenemos que poder salvar hacia afuera del servir oracle para hace backups
+- Forzar redirección automática HTTP → HTTPS (no sabemos si está perfecto)
+- Ajustar headers de seguridad (HSTS, X-Frame-Options, etc.)
+- Probar login real desde producción
+- Automatizar deploy
+
+002 - Backup de CVs
+004 - Headers de seguridad
+005 - Redirección HTTP → HTTPS
+006 - Automatización deploy

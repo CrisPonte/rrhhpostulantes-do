@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: rrhh_api
     restart: unless-stopped
+    user: "1001:1001"
     ports:
       - "5000:5000"
     environment:
