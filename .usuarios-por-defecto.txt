@@ -6,6 +6,13 @@ Jefe de RRHH:
 Usuario: jefe@hr-talent.local
 Contraseña: 123456
 
+Staff de RRHH:
+Usuario: staff@hr-talent.local
+Contraseña: 123456
+
+
+Para chatGPT: "éxito, genera el documento final"
+
 You can initiate the processes manually now using:
 npm run dev (in web)
 docker-compose up (at project base)
@@ -24,7 +31,7 @@ rrhh_web: Frontend (Nginx).
 
 
 Ingresar desde 
-http://localhost:5173/ con el correo admin@hr-talent.local y la contraseña 123456.
+http://localhost:80/ con el correo admin@hr-talent.local y la contraseña 123456.
 
 Github:
 

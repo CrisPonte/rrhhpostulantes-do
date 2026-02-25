@@ -12,6 +12,10 @@ class AuthService {
             throw new Error('Credenciales inválidas');
         }
 
+        if (usuario.activo === false) {
+            throw new Error('Usuario bloqueado. Contacte al administrador.');
+        }
+
         // 2. Add extra complexity (BCRYPT_SECRET) if used in hashing, but usually bcrypt is enough
         // For this implementation, we just use standard bcrypt compare
         // If the SPEC meant "hash the password with BCRYPT_SECRET beforehand", you'd do it here. 

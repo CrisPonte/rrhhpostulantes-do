@@ -11,6 +11,7 @@ router.post('/', verifyToken, checkRole(['admin', 'jefe de rrhh']), usuarioContr
 router.put('/:id', verifyToken, checkRole(['admin', 'jefe de rrhh']), usuarioController.update);
 router.delete('/:id', verifyToken, checkRole(['admin']), usuarioController.delete); // only admin can delete users completely (soft delete)
 router.post('/:id/reset-password', verifyToken, checkRole(['admin']), usuarioController.resetPassword);
+router.patch('/:id/toggle-status', verifyToken, checkRole(['admin']), usuarioController.toggleStatus);
 router.post('/change-password', verifyToken, usuarioController.changePassword);
 
 module.exports = router;

@@ -158,6 +158,27 @@ class UsuarioController {
             res.status(500).json({ error: error.message });
         }
     };
+
+    toggleStatus = async (req, res) => {
+        try {
+            const repo = getRepository('Usuario');
+            const user = await repo.findById(req.params.id);
+            if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+
+            const newStatus = !user.activo;
+            await repo.update(req.params.id, {
+                activo: newStatus,
+                updatedBy: req.user?.userId
+            });
+
+            res.json({
+                message: `Usuario ${newStatus ? 'desbloqueado' : 'bloqueado'} correctamente`,
+                activo: newStatus
+            });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    };
 }
 
 module.exports = new UsuarioController();

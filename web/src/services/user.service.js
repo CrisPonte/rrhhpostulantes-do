@@ -42,13 +42,19 @@ const changePassword = async (currentPassword, newPassword) => {
     return response.data;
 };
 
+const toggleStatus = async (id) => {
+    const response = await axios.patch(`${API_URL}/usuarios/${id}/toggle-status`, {}, getHeaders());
+    return response.data;
+};
+
 const userService = {
     getAll,
     create,
     update,
     deleteUser,
     resetPassword,
-    changePassword
+    changePassword,
+    toggleStatus
 };
 
 export default userService;

@@ -35,7 +35,7 @@ const DashboardLayout = () => {
                                     <Users size={20} />
                                     Postulantes
                                 </Link>
-                                {user.rol === 'admin' && (
+                                {user.rol?.toLowerCase() === 'admin' && (
                                     <Link
                                         to="/usuarios"
                                         className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition-colors ${window.location.pathname === '/usuarios' ? 'text-blue-700 bg-blue-50' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'}`}

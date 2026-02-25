@@ -8,6 +8,7 @@ const UsuarioSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true, trim: true, lowercase: true },
     password: { type: String, required: true },
     rol: { type: String, ref: 'Rol', required: true },
+    activo: { type: Boolean, default: true },
 
     // Audit fields
     createdBy: { type: String },

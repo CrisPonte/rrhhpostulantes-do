@@ -3,11 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import postulanteService from '../services/postulante.service';
 import SearchFilters from '../components/SearchFilters';
-import { Plus, Eye, Trash2, ShieldAlert } from 'lucide-react';
+import { Plus, Eye, Trash2, ShieldAlert, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PostulantesList = () => {
     const [postulantes, setPostulantes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [pagination, setPagination] = useState({
+        total: 0,
+        page: 1,
+        limit: 10,
+        totalPages: 0
+    });
+    const [activeFilters, setActiveFilters] = useState({});
     const { user } = useAuth();
     const navigate = useNavigate();
 
@@ -16,11 +23,17 @@ const PostulantesList = () => {
     const canDelete = isAdmin || isJefe;
     const canCreate = isAdmin || isJefe;
 
-    const fetchPostulantes = async (filters = {}) => {
+    const fetchPostulantes = async (page = 1, limit = 10, filters = {}) => {
         setLoading(true);
         try {
-            const data = await postulanteService.getAll(filters);
-            setPostulantes(data);
+            const data = await postulanteService.getAll({ ...filters, page, limit });
+            setPostulantes(data.items);
+            setPagination({
+                total: data.total,
+                page: data.page,
+                limit: data.limit,
+                totalPages: data.totalPages
+            });
         } catch (error) {
             console.error('Error fetching postulantes:', error);
         } finally {
@@ -29,11 +42,22 @@ const PostulantesList = () => {
     };
 
     useEffect(() => {
-        fetchPostulantes();
-    }, []);
+        fetchPostulantes(pagination.page, pagination.limit, activeFilters);
+    }, [pagination.page, pagination.limit, activeFilters]);
 
     const handleSearch = (filters) => {
-        fetchPostulantes(filters);
+        setActiveFilters(filters);
+        setPagination(prev => ({ ...prev, page: 1 })); // Reset to first page on new search
+    };
+
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= pagination.totalPages) {
+            setPagination(prev => ({ ...prev, page: newPage }));
+        }
+    };
+
+    const handleLimitChange = (e) => {
+        setPagination(prev => ({ ...prev, limit: parseInt(e.target.value), page: 1 }));
     };
 
     const handleDelete = async (id, nombre) => {
@@ -144,11 +168,80 @@ const PostulantesList = () => {
                         </tbody>
                     </table>
                 </div>
-                {!loading && postulantes.length > 0 && (
-                    <div className="bg-gray-50 p-4 border-t border-gray-100 text-xs text-gray-500 text-right">
-                        Mostrando {postulantes.length} postulantes
+                <div className="bg-gray-50 p-4 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-center gap-2">
+                            <span>Mostrar:</span>
+                            <select
+                                value={pagination.limit}
+                                onChange={handleLimitChange}
+                                className="border border-gray-300 rounded-lg px-2 py-1.5 bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                            >
+                                {[10, 20, 50, 100].map(val => (
+                                    <option key={val} value={val}>{val}</option>
+                                ))}
+                            </select>
+                        </div>
+                        {!loading && (
+                            <span>
+                                Total: <span className="font-semibold text-gray-900">{pagination.total}</span> registros
+                            </span>
+                        )}
                     </div>
-                )}
+
+                    {!loading && pagination.totalPages > 1 && (
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => handlePageChange(pagination.page - 1)}
+                                disabled={pagination.page === 1}
+                                className="p-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
+                                title="Anterior"
+                            >
+                                <ChevronLeft size={18} />
+                            </button>
+
+                            <div className="flex items-center gap-1">
+                                {[...Array(pagination.totalPages)].map((_, i) => {
+                                    const pageNum = i + 1;
+                                    if (
+                                        pageNum === 1 ||
+                                        pageNum === pagination.totalPages ||
+                                        (pageNum >= pagination.page - 2 && pageNum <= pagination.page + 2)
+                                    ) {
+                                        return (
+                                            <button
+                                                key={pageNum}
+                                                onClick={() => handlePageChange(pageNum)}
+                                                className={`w-9 h-9 rounded-lg text-sm font-medium transition-all ${pagination.page === pageNum
+                                                    ? 'bg-blue-600 text-white shadow-md'
+                                                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+                                                    }`}
+                                            >
+                                                {pageNum}
+                                            </button>
+                                        );
+                                    }
+                                    if (
+                                        (pageNum === 2 && pagination.page > 4) ||
+                                        (pageNum === pagination.totalPages - 1 && pagination.page < pagination.totalPages - 3)
+                                    ) {
+                                        return <span key={pageNum} className="px-1 text-gray-400">...</span>;
+                                    }
+                                    return null;
+                                })}
+                            </div>
+
+                            <button
+                                onClick={() => handlePageChange(pagination.page + 1)}
+                                disabled={pagination.page === pagination.totalPages}
+                                className="p-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
+                                title="Siguiente"
+                            >
+                                <ChevronRight size={18} />
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

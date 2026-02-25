@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
     UserPlus, Edit2, Trash2, Key, Shield, Mail, User,
-    Search, AlertCircle, Loader2, X, Check, Eye, EyeOff
+    Search, AlertCircle, Loader2, X, Check, Eye, EyeOff,
+    UserMinus, ShieldCheck
 } from 'lucide-react';
 import userService from '../services/user.service';
 import supportService from '../services/support.service';
@@ -152,6 +153,24 @@ const UserManagement = () => {
         }
     };
 
+    const handleToggleStatus = async (user) => {
+        if (user._id === currentUser.id) {
+            alert('No puedes bloquear tu propio usuario.');
+            return;
+        }
+
+        const action = user.activo ? 'bloquear' : 'desbloquear';
+        if (window.confirm(`¿Estás seguro de que deseas ${action} al usuario ${user.nombre} ${user.apellido}?`)) {
+            try {
+                await userService.toggleStatus(user._id);
+                fetchData();
+            } catch (err) {
+                console.error(err);
+                setError('Error al cambiar el estado del usuario.');
+            }
+        }
+    };
+
     const filteredUsers = users.filter(u =>
         u.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
         u.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -226,7 +245,14 @@ const UserManagement = () => {
                                                 {u.nombre[0].toUpperCase()}
                                             </div>
                                             <div className="ml-4">
-                                                <div className="text-sm font-medium text-gray-900">{u.nombre} {u.apellido}</div>
+                                                <div className="text-sm font-medium text-gray-900 flex items-center gap-2">
+                                                    {u.nombre} {u.apellido}
+                                                    {u.activo === false && (
+                                                        <span className="px-1.5 py-0.5 bg-red-100 text-red-700 text-[10px] font-bold uppercase rounded leading-none">
+                                                            Bloqueado
+                                                        </span>
+                                                    )}
+                                                </div>
                                                 <div className="text-xs text-gray-500">ID: {u._id.substring(0, 8)}...</div>
                                             </div>
                                         </div>
@@ -236,8 +262,8 @@ const UserManagement = () => {
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                            ${u.rol === 'admin' ? 'bg-purple-100 text-purple-800' :
-                                                u.rol === 'jefe de rrhh' ? 'bg-blue-100 text-blue-800' :
+                                            ${u.rol?.toLowerCase() === 'admin' ? 'bg-purple-100 text-purple-800' :
+                                                u.rol?.toLowerCase() === 'jefe de rrhh' ? 'bg-blue-100 text-blue-800' :
                                                     'bg-green-100 text-green-800'}`}
                                         >
                                             {u.rol}
@@ -260,13 +286,22 @@ const UserManagement = () => {
                                                 <Edit2 size={18} />
                                             </button>
                                             {u._id !== currentUser.id && (
-                                                <button
-                                                    onClick={() => handleDeleteUser(u)}
-                                                    className="p-2 text-gray-400 hover:text-red-600 transition-colors"
-                                                    title="Eliminar usuario"
-                                                >
-                                                    <Trash2 size={18} />
-                                                </button>
+                                                <>
+                                                    <button
+                                                        onClick={() => handleToggleStatus(u)}
+                                                        className={`p-2 transition-colors ${u.activo ? 'text-gray-400 hover:text-red-500' : 'text-red-500 hover:text-green-600'}`}
+                                                        title={u.activo ? 'Bloquear usuario' : 'Desbloquear usuario'}
+                                                    >
+                                                        {u.activo ? <UserMinus size={18} /> : <ShieldCheck size={18} />}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDeleteUser(u)}
+                                                        className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+                                                        title="Eliminar usuario"
+                                                    >
+                                                        <Trash2 size={18} />
+                                                    </button>
+                                                </>
                                             )}
                                         </div>
                                     </td>
@@ -410,23 +445,41 @@ const UserManagement = () => {
                         <form onSubmit={handleResetPassword} className="space-y-4">
                             <div className="space-y-1">
                                 <label className="text-sm font-semibold text-gray-700">Nueva Contraseña</label>
-                                <input
-                                    type="password"
-                                    required
-                                    value={resetData.newPassword}
-                                    onChange={(e) => setResetData({ ...resetData, newPassword: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        required
+                                        value={resetData.newPassword}
+                                        onChange={(e) => setResetData({ ...resetData, newPassword: e.target.value })}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none pr-10"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-2 text-gray-400 hover:text-gray-600"
+                                    >
+                                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                    </button>
+                                </div>
                             </div>
                             <div className="space-y-1">
                                 <label className="text-sm font-semibold text-gray-700">Confirmar Contraseña</label>
-                                <input
-                                    type="password"
-                                    required
-                                    value={resetData.confirmPassword}
-                                    onChange={(e) => setResetData({ ...resetData, confirmPassword: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        required
+                                        value={resetData.confirmPassword}
+                                        onChange={(e) => setResetData({ ...resetData, confirmPassword: e.target.value })}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none pr-10"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-3 top-2 text-gray-400 hover:text-gray-600"
+                                    >
+                                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                    </button>
+                                </div>
                             </div>
 
                             <div className="pt-4 flex gap-3">

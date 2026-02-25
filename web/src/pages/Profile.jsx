@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     User, Key, Shield, Mail, Lock,
-    Loader2, AlertCircle, CheckCircle2
+    Loader2, AlertCircle, CheckCircle2, Eye, EyeOff
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import userService from '../services/user.service';
@@ -11,6 +11,7 @@ const Profile = () => {
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const [formData, setFormData] = useState({
         currentPassword: '',
@@ -118,13 +119,20 @@ const Profile = () => {
                                             <Lock size={18} />
                                         </div>
                                         <input
-                                            type="password"
+                                            type={showPassword ? "text" : "password"}
                                             required
                                             value={formData.currentPassword}
                                             onChange={(e) => setFormData({ ...formData, currentPassword: e.target.value })}
-                                            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                            className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                                             placeholder="••••••••"
                                         />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                                        >
+                                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                        </button>
                                     </div>
                                 </div>
 
@@ -138,13 +146,20 @@ const Profile = () => {
                                                 <Key size={18} />
                                             </div>
                                             <input
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}
                                                 required
                                                 value={formData.newPassword}
                                                 onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
-                                                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                                className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                                                 placeholder="Mínimo 6 caracteres"
                                             />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                                            >
+                                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                            </button>
                                         </div>
                                     </div>
                                     <div>
@@ -156,13 +171,20 @@ const Profile = () => {
                                                 <CheckCircle2 size={18} />
                                             </div>
                                             <input
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}
                                                 required
                                                 value={formData.confirmPassword}
                                                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                                                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                                className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                                                 placeholder="Repita la nueva contraseña"
                                             />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                                            >
+                                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
