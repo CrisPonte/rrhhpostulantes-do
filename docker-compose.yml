@@ -77,6 +77,8 @@ services:
       - ./certs:/etc/nginx/certs
       - ./vhost.d:/etc/nginx/vhost.d
       - ./html:/usr/share/nginx/html
+      # agregada por ChatGPT El nombre zzz_ es intencional: fuerza a que se cargue al final
+      - ./nginx-proxy/global.conf:/etc/nginx/conf.d/zzz_global.conf:ro
 
   nginx-letsencrypt:
     image: nginxproxy/acme-companion
