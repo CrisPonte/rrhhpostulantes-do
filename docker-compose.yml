@@ -28,8 +28,11 @@ services:
 
   web:
     build:
-      context: ./web
-      dockerfile: Dockerfile
+      # me lo hizo comentar chatgpt para que use la imagen de docker hub
+      # y reemplazar por image: cristianponte/rrhh-postulantes-web:latest
+      #context: ./web
+      #dockerfile: Dockerfile
+      image: cristianponte/rrhh-postulantes-web:latest
     container_name: rrhh_web
     restart: unless-stopped
     # Cambio sugerido por ChatGPT para que funcione en Oracle Cloud el 443 HTTPS
