@@ -3,6 +3,7 @@ const router = express.Router();
 const postulanteController = require('../controllers/PostulanteController');
 const { verifyToken } = require('../middlewares/auth.middleware');
 const { checkRole } = require('../middlewares/rbac.middleware');
+const path = require('path');   // 👈 agregar esto chatGPT
 const multer = require('multer');
 
 
