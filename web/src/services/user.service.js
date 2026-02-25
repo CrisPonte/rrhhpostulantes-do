@@ -1,49 +1,37 @@
-import axios from 'axios';
-import authService from './auth.service';
-
-const API_URL = import.meta.env.VITE_API_URL || '/api';
-
-const getHeaders = () => {
-    const token = authService.getToken();
-    return {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    };
-};
+import api from './api';
 
 const getAll = async () => {
-    const response = await axios.get(`${API_URL}/usuarios`, getHeaders());
+    const response = await api.get('/usuarios');
     return response.data;
 };
 
 const create = async (userData) => {
-    const response = await axios.post(`${API_URL}/usuarios`, userData, getHeaders());
+    const response = await api.post('/usuarios', userData);
     return response.data;
 };
 
 const update = async (id, userData) => {
-    const response = await axios.put(`${API_URL}/usuarios/${id}`, userData, getHeaders());
+    const response = await api.put(`/usuarios/${id}`, userData);
     return response.data;
 };
 
 const deleteUser = async (id) => {
-    const response = await axios.delete(`${API_URL}/usuarios/${id}`, getHeaders());
+    const response = await api.delete(`/usuarios/${id}`);
     return response.data;
 };
 
 const resetPassword = async (id, newPassword) => {
-    const response = await axios.post(`${API_URL}/usuarios/${id}/reset-password`, { newPassword }, getHeaders());
+    const response = await api.post(`/usuarios/${id}/reset-password`, { newPassword });
     return response.data;
 };
 
 const changePassword = async (currentPassword, newPassword) => {
-    const response = await axios.post(`${API_URL}/usuarios/change-password`, { currentPassword, newPassword }, getHeaders());
+    const response = await api.post('/usuarios/change-password', { currentPassword, newPassword });
     return response.data;
 };
 
 const toggleStatus = async (id) => {
-    const response = await axios.patch(`${API_URL}/usuarios/${id}/toggle-status`, {}, getHeaders());
+    const response = await api.patch(`/usuarios/${id}/toggle-status`, {});
     return response.data;
 };
 

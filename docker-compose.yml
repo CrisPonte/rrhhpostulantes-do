@@ -14,7 +14,7 @@ services:
       - JWT_SECRET=super_secret_key_change_me
       - BCRYPT_SALT=10
       - BCRYPT_SECRET=another_super_secret_encryption_word
-      - SESSION_EXPIRES=30m
+      - SESSION_EXPIRES=2h
       - STORAGE_PATH=/storage/postulantes
       # - CORS_ORIGIN=http://localhost,http://localhost:5173
       # - CORS_ORIGIN=http ://64.181.170.115,http://64.181.170.115:80

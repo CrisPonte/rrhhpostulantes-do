@@ -1,12 +1,7 @@
-import axios from 'axios';
-import authService from './auth.service';
-
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+import api from './api';
 
 const getPostulantes = async (filters = {}) => {
-    const token = authService.getToken();
-    const response = await axios.get(`${API_URL}/postulantes`, {
-        headers: { Authorization: `Bearer ${token}` },
+    const response = await api.get('/postulantes', {
         params: filters
     });
     return response.data;
