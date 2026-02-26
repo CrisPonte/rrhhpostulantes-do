@@ -79,3 +79,19 @@ https://github.com/toonight/get-shit-done-for-antigravity
 
 Anti-Chaotic:
 https://github.com/kienhaminh/anti-chaotic
+
+
+## Configuración inicial en nuevo servidor
+
+1. Clonar el repositorio
+2. Crear archivo .env en la raíz con:
+
+APP_UID=$(id -u ubuntu) incluir el número
+APP_GID=$(id -g ubuntu) incluir el número
+PORT=5000 (puerto de la api)
+DOMAIN=...rrhhpostulantes.duckdns.org
+LETSENCRYPT_EMAIL=...pepe@gmail.com
+
+3. Ejecutar:
+
+docker compose up -d --build
