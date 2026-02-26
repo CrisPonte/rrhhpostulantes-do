@@ -28,3 +28,13 @@ web/.env
 
 # MongoDB data
 mongodb_data/
+
+/get-shit-done-for-antigravity
+.rrhh-server/
+.ocultos/
+*.pdf
+*.docx
+*.doc
+
+
+.env

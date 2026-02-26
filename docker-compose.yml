@@ -5,27 +5,23 @@ services:
       dockerfile: Dockerfile
     container_name: rrhh_api
     restart: unless-stopped
-      # agregado por ChatGPT problemas de permisos, 
-      # asi corre la app con el usuario de ubuntu pro default sin problemas de permisos
     user: "${APP_UID}:${APP_GID}"
-    ports:
-      - "${PORT}:${PORT}"
+    expose:
+      - "${PORT}"
     environment:
       - PORT=${PORT}
       - DB_TYPE=mongodb
       - DB_URI=mongodb://mongodb:27017/rrhh-postulantes
-      - JWT_SECRET=super_secret_key_change_me
-      - BCRYPT_SALT=10
-      - BCRYPT_SECRET=another_super_secret_encryption_word
+      - JWT_SECRET=${JWT_SECRET}
+      - BCRYPT_SALT=${BCRYPT_SALT}
+      - BCRYPT_SECRET=${BCRYPT_SECRET}
       - SESSION_EXPIRES=1h
       - STORAGE_PATH=/storage/postulantes
       # - CORS_ORIGIN=http://localhost,http://localhost:5173
       # - CORS_ORIGIN=http ://64.181.170.115,http://64.181.170.115:80
-      - CORS_ORIGIN=http://localhost,http://64.181.170.115
+      - CORS_ORIGIN=${CORS_ORIGIN}
     volumes:
-      - type: bind
-        source: ./storage
-        target: /storage
+      - ./storage/postulantes:/storage/postulantes
     depends_on:
       - mongodb
 
@@ -98,19 +94,3 @@ services:
       - ./certs:/etc/nginx/certs
       - ./vhost.d:/etc/nginx/vhost.d
       - ./html:/usr/share/nginx/html
-
-#  postgres:
-#    image: postgres:15-alpine
-#    container_name: rrhh_postgres
-#    restart: unless-stopped
-#    environment:
-#      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: password
-#      POSTGRES_DB: rrhh-postulantes
-#    ports:
-#      - "5432:5432"
-#    volumes:
-#      - postgres_data:/var/lib/postgresql/data
-
-#volumes:
-#  postgres_data:
