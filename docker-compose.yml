@@ -33,7 +33,7 @@ services:
     build:
       # me lo hizo comentar chatgpt para que use la imagen de docker hub
       # y reemplazar por image: cristianponte/rrhh-postulantes-web:latest
-      # tiempo despues lo volvi a poner para que se actualice desde aca
+      # tiempo despues lo volvi a poner para que se actualice desde aca.
       context: ./web
       dockerfile: Dockerfile
     #image: cristianponte/rrhh-postulantes-web:latest

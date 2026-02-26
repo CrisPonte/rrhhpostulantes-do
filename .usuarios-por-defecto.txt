@@ -87,6 +87,15 @@ docker ps
 ver despues de hacer cambios en el codigo:
 docker compose logs -f
 
+ver la hora en la que se reinicaron:
+deploy@rrhh-vnic:~$ docker ps --format "table {{.Names}}\t{{.RunningFor}}"
+NAMES              CREATED
+rrhh_api           About a minute ago
+rrhh_mongodb       15 minutes ago
+rrhh_web           2 hours ago
+rrhh_letsencrypt   2 hours ago
+rrhh_nginx_proxy   2 hours ago
+
 
 temas pendientes 
 
