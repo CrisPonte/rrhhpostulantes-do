@@ -42,6 +42,9 @@ Actualizar cambios:
  git commit -m "Update project before push"
  git push origin main (o master)
 
+Con esas instrucciones, como hay "actions" configuradas, solo se hace el deploy y se reinicia la app
+Ni siquiera falta hacer el pull, ni entrar en el servidor...(glorioso)
+
  Actualizar descargando todo de github,parado en el directorio: 
  git pull
 
@@ -75,6 +78,14 @@ Para correr la importacion de datos desde SQL a MongoDB usando qryPostulantes ej
 cd api
 node scripts/importSqlToMongo.js
 
+Para entrar en modo deploy desde mi PC:
+en gitBash: 
+
+ssh rrhh-vps
+docker ps
+
+ver despues de hacer cambios en el codigo:
+docker compose logs -f
 
 
 temas pendientes 
