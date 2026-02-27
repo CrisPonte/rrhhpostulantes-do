@@ -42,3 +42,8 @@ docker-compose.override.yml
 
 # carpetas con legajos de ejemplo
 storage/
+backups/
+
+# No subir los certificados y html de nginx
+nginx/certs/
+nginx/html/
