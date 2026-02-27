@@ -5,7 +5,6 @@ services:
       dockerfile: Dockerfile
     container_name: rrhh_api
     restart: unless-stopped
-    user: "${APP_UID}:${APP_GID}"
     expose:
       - "${PORT}"
     environment:
@@ -21,7 +20,7 @@ services:
       # - CORS_ORIGIN=http ://64.181.170.115,http://64.181.170.115:80
       - CORS_ORIGIN=${CORS_ORIGIN}
     volumes:
-      - ./storage/postulantes:/storage/postulantes
+      - /srv/data/rrhh-postulantes/storage/postulantes:/storage/postulantes
     depends_on:
       - mongodb
 
@@ -56,13 +55,11 @@ services:
       - api
 
   mongodb:
-    image: mongo:latest
+    image: mongo:7
     container_name: rrhh_mongodb
     restart: unless-stopped
-    ports:
-      - "27017:27017"
     volumes:
-      - ~/rrhh-postulantes/mongodb_data:/data/db
+      - mongodb_data:/data/db
 
   # Agregado por ChatGPT para gestionar los puertos 80 y 443
   nginx-proxy:
@@ -74,11 +71,17 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./certs:/etc/nginx/certs
-      - ./vhost.d:/etc/nginx/vhost.d
-      - ./html:/usr/share/nginx/html
-      # agregada por ChatGPT El nombre zzz_ es intencional: fuerza a que se cargue al final
-      - ./nginx-proxy/global.conf:/etc/nginx/conf.d/zzz_global.conf:ro
+      - /srv/data/rrhh-postulantes/nginx/certs:/etc/nginx/certs
+      - /srv/data/rrhh-postulantes/nginx/vhost.d:/etc/nginx/vhost.d
+      - /srv/data/rrhh-postulantes/nginx/html:/usr/share/nginx/html
+      # agregada por ChatGPT, para usar un archivo de configuración global que permita
+      # regular el tamaño de archivos que se sube. crear ese achivo en el server y escribir:
+      # client_max_body_size 20M;
+      # proxy_connect_timeout 300;
+      # proxy_send_timeout 300;
+      # proxy_read_timeout 300;
+      # send_timeout 300;
+      - /srv/data/rrhh-postulantes/nginx/global.conf:/etc/nginx/conf.d/zzz_global.conf:ro
 
   nginx-letsencrypt:
     image: nginxproxy/acme-companion
@@ -91,6 +94,9 @@ services:
       - NGINX_PROXY_CONTAINER=rrhh_nginx_proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./certs:/etc/nginx/certs
-      - ./vhost.d:/etc/nginx/vhost.d
-      - ./html:/usr/share/nginx/html
+      - /srv/data/rrhh-postulantes/nginx/certs:/etc/nginx/certs
+      - /srv/data/rrhh-postulantes/nginx/vhost.d:/etc/nginx/vhost.d
+      - /srv/data/rrhh-postulantes/nginx/html:/usr/share/nginx/html
+
+volumes:
+  mongodb_data:
