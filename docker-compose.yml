@@ -94,9 +94,9 @@ services:
       - NGINX_PROXY_CONTAINER=rrhh_nginx_proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /srv/data/rrhh-postulantes/nginx/certs:/etc/nginx/certs
-      - /srv/data/rrhh-postulantes/nginx/vhost.d:/etc/nginx/vhost.d
-      - /srv/data/rrhh-postulantes/nginx/html:/usr/share/nginx/html
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/vhost.d:/etc/nginx/vhost.d
+      - ./nginx/html:/usr/share/nginx/html
 
 volumes:
   mongodb_data:
