@@ -71,9 +71,9 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /srv/data/rrhh-postulantes/nginx/certs:/etc/nginx/certs
-      - /srv/data/rrhh-postulantes/nginx/vhost.d:/etc/nginx/vhost.d
-      - /srv/data/rrhh-postulantes/nginx/html:/usr/share/nginx/html
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/vhost.d:/etc/nginx/vhost.d
+      - ./nginx/html:/usr/share/nginx/html
       # agregada por ChatGPT, para usar un archivo de configuración global que permita
       # regular el tamaño de archivos que se sube. crear ese achivo en el server y escribir:
       # client_max_body_size 20M;
@@ -81,7 +81,7 @@ services:
       # proxy_send_timeout 300;
       # proxy_read_timeout 300;
       # send_timeout 300;
-      - /srv/data/rrhh-postulantes/nginx/global.conf:/etc/nginx/conf.d/zzz_global.conf:ro
+      # - /srv/data/rrhh-postulantes/nginx/global.conf:/etc/nginx/conf.d/zzz_global.conf:ro
 
   nginx-letsencrypt:
     image: nginxproxy/acme-companion

@@ -7,7 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "npm run seed --prefix api",
+    "import-sql": "npm run import-sql --prefix api",
+    "explore-sql": "npm run explore-sql --prefix api"
   },
   "repository": {
     "type": "git",

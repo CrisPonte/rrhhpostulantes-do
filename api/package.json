@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "seed": "node scripts/seed.js",
+    "import-sql": "node scripts/importSqlToMongo.js",
+    "explore-sql": "node scripts/exploreSql.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
