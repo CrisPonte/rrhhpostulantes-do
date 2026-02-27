@@ -29,6 +29,7 @@ web/.env
 # MongoDB data
 mongodb_data/
 
+# mis archivos a ignorar
 get-shit-done-for-antigravity/
 .rrhh-server/
 .ocultos/
@@ -36,6 +37,8 @@ get-shit-done-for-antigravity/
 *.docx
 *.doc
 
-storage/
+# el Docker Compose de desarrollo
+docker-compose.override.yml
 
-.env
+# carpetas con legajos de ejemplo
+storage/
