@@ -20,7 +20,12 @@ CMD ["npm", "start"]
 #  id deploy
 # uid=1000(deploy) gid=1000(deploy) groups=1000(deploy),27(sudo),100(users),988(docker)
 
-RUN addgroup -g 1000 appgroup \
-    && adduser -D -u 1000 -G appgroup appuser
+#RUN addgroup -g 1000 appgroup \
+#    && adduser -D -u 1000 -G appgroup appuser  
+
+#USER appuser
+
+RUN addgroup -S appgroup \
+    && adduser -S appuser -G appgroup
 
 USER appuser

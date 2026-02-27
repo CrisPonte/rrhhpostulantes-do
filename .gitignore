@@ -28,6 +28,7 @@ web/.env
 
 # MongoDB data
 mongodb_data/
+mongo-local.gz
 
 # mis archivos a ignorar
 get-shit-done-for-antigravity/
