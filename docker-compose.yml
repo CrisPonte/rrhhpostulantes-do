@@ -55,7 +55,7 @@ services:
       - api
 
   mongodb:
-    image: mongo:7
+    image: mongo:8
     container_name: rrhh_mongodb
     restart: unless-stopped
     volumes:
