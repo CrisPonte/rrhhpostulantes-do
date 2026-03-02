@@ -55,11 +55,6 @@ const StudiesInfo = ({ formData, onChange, readOnly }) => {
                         className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-60" />
                 </div>
 
-                <div className="md:col-span-2">
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Observaciones Generales</label>
-                    <textarea name="observaciones" value={formData.observaciones || ''} onChange={onChange} disabled={readOnly} rows="3"
-                        className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-60" placeholder="Notas sobre el perfil..."></textarea>
-                </div>
             </div>
         </div>
     );

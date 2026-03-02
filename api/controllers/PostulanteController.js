@@ -43,6 +43,35 @@ class PostulanteController {
 
             const data = { ...req.body, updatedBy: req.user?.userId };
 
+            // Handle observations logic
+            const userRol = req.user?.rol?.toLowerCase();
+            const isAdmin = userRol === 'admin';
+            const isJefe = userRol === 'jefe de rrhh';
+
+            // If a new observation is provided
+            if (req.body.nuevaObservacion && req.body.nuevaObservacion.trim() !== '') {
+                if (isAdmin || isJefe) {
+                    const observation = {
+                        texto: req.body.nuevaObservacion.trim(),
+                        fecha: new Date(),
+                        usuarioId: req.user.userId,
+                        usuarioNombre: req.user.nombre + ' ' + req.user.apellido
+                    };
+
+                    if (!oldItem.observaciones) oldItem.observaciones = [];
+                    oldItem.observaciones.push(observation);
+                    // Ensure the updated array is in the data to be saved
+                    data.observaciones = oldItem.observaciones;
+                } else {
+                    return res.status(403).json({ error: 'No tiene permisos para agregar observaciones' });
+                }
+            } else if (req.body.observaciones !== undefined) {
+                // If the whole array is sent, only admin can overwrite/edit previous ones
+                if (!isAdmin) {
+                    delete data.observaciones;
+                }
+            }
+
             // Check if identity changed for directory rename
             const identityChanged =
                 (data.apellido && data.apellido !== oldItem.apellido) ||

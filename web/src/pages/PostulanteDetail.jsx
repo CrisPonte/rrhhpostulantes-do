@@ -4,6 +4,7 @@ import postulanteService from '../services/postulante.service';
 import PersonalInfo from '../components/forms/PersonalInfo';
 import StudiesInfo from '../components/forms/StudiesInfo';
 import InterviewInfo from '../components/forms/InterviewInfo';
+import ObservationsNotes from '../components/forms/ObservationsNotes';
 import FileManager from '../components/FileManager';
 import { ArrowLeft, Save, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 
@@ -19,9 +20,11 @@ const PostulanteDetail = () => {
         resultadoEntrevista: 'Sin Calificar',
         resultadoFinal: 'Sin Categorizar',
         estadoContacto: 'Sin Contactar',
-        genero: 'Sin Categorizar'
+        genero: 'Sin Categorizar',
+        observaciones: []
     });
 
+    const [newObservation, setNewObservation] = useState('');
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState('');
@@ -60,12 +63,19 @@ const PostulanteDetail = () => {
         setSuccess('');
 
         try {
+            const dataToSend = { ...formData };
+            if (newObservation.trim()) {
+                dataToSend.nuevaObservacion = newObservation;
+            }
+
             if (isNew) {
-                const newData = await postulanteService.create(formData);
+                const newData = await postulanteService.create(dataToSend);
                 navigate(`/postulantes/${newData._id}`, { replace: true });
                 setSuccess('Postulante creado correctamente.');
             } else {
-                await postulanteService.update(id, formData);
+                const updated = await postulanteService.update(id, dataToSend);
+                setFormData(updated);
+                setNewObservation('');
                 setSuccess('Datos actualizados correctamente.');
             }
         } catch (err) {
@@ -115,6 +125,12 @@ const PostulanteDetail = () => {
                 <PersonalInfo formData={formData} onChange={handleChange} />
                 <StudiesInfo formData={formData} onChange={handleChange} />
                 <InterviewInfo formData={formData} onChange={handleChange} />
+
+                <ObservationsNotes
+                    formData={formData}
+                    newObservation={newObservation}
+                    onNewObservationChange={setNewObservation}
+                />
 
                 <div className="flex justify-end gap-3 mt-8">
                     <button type="button" onClick={() => navigate('/postulantes')} className="px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition-colors">

@@ -40,21 +40,28 @@ class UsuarioController {
 
     create = async (req, res) => {
         try {
-            const { email, password, nombre, apellido, rol } = req.body;
+            const { email, password, nombre, apellido, rol, alias } = req.body;
             if (!password) return res.status(400).json({ error: 'Password requerida' });
+
+            const repo = getRepository('Usuario');
+
+            // Handle alias logic
+            let finalAlias = alias;
+            if (!finalAlias) {
+                finalAlias = await repo.suggestUniqueAlias(nombre, apellido);
+            }
 
             // Resolve role name to ID
             const rolRepo = getRepository('Rol');
             const rolDoc = await rolRepo.model.findOne({ nombre: rol }).exec();
             if (!rolDoc) return res.status(400).json({ error: 'Rol no válido' });
 
-            const repo = getRepository('Usuario');
-
             const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT) || 10);
             const hashedPassword = await bcrypt.hash(password, salt);
 
             const newItem = await repo.create({
                 email,
+                alias: finalAlias,
                 password: hashedPassword,
                 nombre,
                 apellido,

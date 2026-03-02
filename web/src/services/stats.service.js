@@ -37,7 +37,25 @@ const getStats = async () => {
         return acc;
     }, {});
 
-    return { byProvincia, byEstado, byPuesto, byTituloOriginal, total: all.length };
+    const byResultadoFinal = all.reduce((acc, curr) => {
+        const resultado = curr.resultadoFinal || 'Sin Categorizar';
+        acc[resultado] = (acc[resultado] || 0) + 1;
+        return acc;
+    }, {});
+
+    const byEstadoContacto = all.reduce((acc, curr) => {
+        const contacto = curr.estadoContacto || 'Sin Contactar';
+        acc[contacto] = (acc[contacto] || 0) + 1;
+        return acc;
+    }, {});
+
+    const byDesempeno = all.reduce((acc, curr) => {
+        const resultado = curr.resultadoEntrevista || 'Sin Calificar';
+        acc[resultado] = (acc[resultado] || 0) + 1;
+        return acc;
+    }, {});
+
+    return { byProvincia, byEstado, byPuesto, byTituloOriginal, byResultadoFinal, byEstadoContacto, byDesempeno, total: all.length };
 };
 
 const statsService = {

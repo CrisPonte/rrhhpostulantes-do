@@ -78,7 +78,12 @@ const PostulanteSchema = new mongoose.Schema({
         enum: ['Aprobado', 'No Aprobado', 'Sin Categorizar'],
         default: 'Sin Categorizar'
     },
-    observaciones: { type: String, trim: true },
+    observaciones: [{
+        texto: { type: String, required: true },
+        fecha: { type: Date, default: Date.now },
+        usuarioId: { type: String, required: true },
+        usuarioNombre: { type: String, required: true }
+    }],
 
     // Additional info references (Files are handled physically, we can just optionally store names or URLs here)
     documentos: [{ type: String }],

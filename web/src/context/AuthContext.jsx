@@ -6,8 +6,8 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => authService.getCurrentUser());
 
-    const login = async (email, password) => {
-        const data = await authService.login(email, password);
+    const login = async (identity, password) => {
+        const data = await authService.login(identity, password);
         setUser(data.user);
         return data;
     };

@@ -35,6 +35,7 @@ const seedData = async () => {
             {
                 nombre: 'Admin',
                 apellido: 'System',
+                alias: 'admin',
                 email: 'admin@hr-talent.local',
                 password: passwordHash,
                 rol: createdRoles.find(r => r.nombre === 'admin')._id
@@ -42,6 +43,7 @@ const seedData = async () => {
             {
                 nombre: 'Jefe',
                 apellido: 'RRHH',
+                alias: 'jefe',
                 email: 'jefe@hr-talent.local',
                 password: passwordHash,
                 rol: createdRoles.find(r => r.nombre === 'jefe de rrhh')._id
@@ -49,6 +51,7 @@ const seedData = async () => {
             {
                 nombre: 'Staff',
                 apellido: 'Member',
+                alias: 'staff',
                 email: 'staff@hr-talent.local',
                 password: passwordHash,
                 rol: createdRoles.find(r => r.nombre === 'staff')._id
@@ -57,7 +60,7 @@ const seedData = async () => {
 
         await Usuario.insertMany(usersData);
         console.log('Created 3 default users. Passwords are "123456" for all:');
-        usersData.forEach(u => console.log(`- ${u.email}`));
+        usersData.forEach(u => console.log(`- ${u.alias} (alias)`));
 
         // 2. Support Data: Portales
         console.log('Dropping/Clearing Portal collection...');

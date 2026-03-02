@@ -154,7 +154,12 @@ const importData = async () => {
 
                     resultadoFinal: normalizeEnum(row.ResultadoFinal, resultadoFinalValido),
                     referenciaBusqueda: row.ReferenciaBusqueda,
-                    observaciones: row.Observaciones,
+                    observaciones: row.Observaciones ? [{
+                        texto: row.Observaciones,
+                        fecha: new Date(),
+                        usuarioId: 'system-migration',
+                        usuarioNombre: 'Sistema de Migración'
+                    }] : [],
 
                     // Audit placeholder
                     createdBy: 'system-migration',

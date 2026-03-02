@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const { getRepository } = require('../repositories');
 
 class AuthService {
-    async login(email, password) {
+    async login(identity, password) {
         const usuarioRepo = getRepository('Usuario');
 
-        // 1. Find the user
-        const usuario = await usuarioRepo.findByEmail(email.trim().toLowerCase());
+        // 1. Find the user by alias
+        const usuario = await usuarioRepo.findByAlias(identity.trim());
         if (!usuario) {
             throw new Error('Credenciales inválidas');
         }
@@ -29,7 +29,9 @@ class AuthService {
         // 3. Generate JWT
         const payload = {
             userId: usuario._id,
-            rol: usuario.rol ? usuario.rol.nombre : null // assuming populated role has "nombre"
+            rol: usuario.rol ? usuario.rol.nombre : null,
+            nombre: usuario.nombre,
+            apellido: usuario.apellido
         };
 
         const token = jwt.sign(

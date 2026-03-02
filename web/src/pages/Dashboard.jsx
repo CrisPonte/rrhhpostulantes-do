@@ -11,7 +11,7 @@ import {
 } from 'chart.js';
 import { Bar, Doughnut, Pie } from 'react-chartjs-2';
 import statsService from '../services/stats.service';
-import { Users, CheckCircle, Clock, MapPin } from 'lucide-react';
+import { Users, CheckCircle, Clock, MapPin, MessageSquare, PhoneCall, Star, TrendingUp } from 'lucide-react';
 
 ChartJS.register(
     CategoryScale,
@@ -112,26 +112,52 @@ const Dashboard = () => {
                     <div>
                         <p className="text-sm text-gray-500 font-medium">Tasa de Aprobación</p>
                         <h3 className="text-2xl font-bold text-gray-900">
-                            {stats.total > 0 ? Math.round((stats.byEstado['Firma de Contrato'] || 0) / stats.total * 100) : 0}%
+                            {stats.total > 0 ? Math.round((stats.byResultadoFinal['Aprobado'] || 0) / stats.total * 100) : 0}%
                         </h3>
                     </div>
                 </div>
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
                     <div className="p-3 bg-yellow-50 text-yellow-600 rounded-xl">
-                        <Clock size={24} />
+                        <PhoneCall size={24} />
                     </div>
                     <div>
-                        <p className="text-sm text-gray-500 font-medium">En Proceso</p>
-                        <h3 className="text-2xl font-bold text-gray-900">{stats.byEstado['Entrevista'] || 0}</h3>
+                        <p className="text-sm text-gray-500 font-medium">Estado de Contacto</p>
+                        <h3 className="text-2xl font-bold text-gray-900">
+                            {stats.byEstadoContacto['Contactado'] || 0} <span className="text-sm text-gray-400 font-normal">/ {stats.total}</span>
+                        </h3>
+                        <p className="text-[10px] text-gray-400 mt-1">Contactados vs Total</p>
                     </div>
                 </div>
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
-                    <div className="p-3 bg-purple-50 text-purple-600 rounded-xl">
-                        <MapPin size={24} />
+                <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center">
+                    <div className="flex items-center gap-2 mb-2">
+                        <Star className="text-purple-600" size={16} />
+                        <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Desempeño</p>
                     </div>
-                    <div>
-                        <p className="text-sm text-gray-500 font-medium">Provincias Activas</p>
-                        <h3 className="text-2xl font-bold text-gray-900">{Object.keys(stats.byProvincia).length}</h3>
+
+                    <div className="space-y-1.5">
+                        {[
+                            { label: 'Excelente', color: 'bg-green-500' },
+                            { label: 'Muy Bueno', color: 'bg-emerald-400' },
+                            { label: 'Bueno', color: 'bg-blue-400' },
+                            { label: 'Regular', color: 'bg-yellow-400' },
+                            { label: 'Malo', color: 'bg-red-400' },
+                            { label: 'Sin Calificar', color: 'bg-gray-300' }
+                        ].map(({ label, color }) => {
+                            const count = stats.byDesempeno[label] || 0;
+                            const percentage = stats.total > 0 ? Math.round((count / stats.total) * 100) : 0;
+                            return (
+                                <div key={label} className="flex items-center gap-2">
+                                    <span className="text-[11px] font-semibold text-gray-700 w-24 truncate">{label}</span>
+                                    <div className="flex-grow bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                        <div
+                                            className={`${color} h-full transition-all duration-1000`}
+                                            style={{ width: `${percentage}%` }}
+                                        ></div>
+                                    </div>
+                                    <span className="text-[11px] font-bold text-blue-700 w-8 text-right">{percentage}%</span>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

@@ -3,12 +3,12 @@ const authService = require('../services/AuthService');
 class AuthController {
     async login(req, res) {
         try {
-            const { email, password } = req.body;
-            if (!email || !password) {
-                return res.status(400).json({ error: 'Faltan credenciales (email o password)' });
+            const { identity, password } = req.body;
+            if (!identity || !password) {
+                return res.status(400).json({ error: 'Faltan credenciales (usuario o contraseña)' });
             }
 
-            const result = await authService.login(email, password);
+            const result = await authService.login(identity, password);
             return res.status(200).json(result);
         } catch (error) {
             if (error.message === 'Credenciales inválidas') {

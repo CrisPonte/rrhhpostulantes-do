@@ -26,6 +26,9 @@ web/.env
 *.tmp
 ~$*
 
+# Scripts
+*.sh 
+
 # MongoDB data
 mongodb_data/
 mongo-local.gz
@@ -33,10 +36,14 @@ mongo-local.gz
 # mis archivos a ignorar
 get-shit-done-for-antigravity/
 .rrhh-server/
-.ocultos/
+.ocultos/   
+backups/
 *.pdf
 *.docx
 *.doc
+*.pub
+*.pem
+keys/
 
 # el Docker Compose de desarrollo
 docker-compose.override.yml
@@ -48,3 +55,4 @@ backups/
 # No subir los certificados y html de nginx
 nginx/certs/
 nginx/html/
+

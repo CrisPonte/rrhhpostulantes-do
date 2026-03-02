@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Lock, Mail, Loader2, AlertCircle, Eye, EyeOff } from 'lucide-react';
+import { Lock, User, Loader2, AlertCircle, Eye, EyeOff } from 'lucide-react';
+import LogoSistema from '../assets/Logo-Sistema.png';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            await login(email, password);
+            await login(username, password);
             navigate('/dashboard');
         } catch (err) {
             setError(err.response?.data?.error || 'Error al iniciar sesión. Por favor, intente de nuevo.');
@@ -53,15 +54,22 @@ const Login = () => {
                     </div>
                 </div>
             )}
-
             <div className="max-w-md w-full">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div className="p-8">
-                        <div className="text-center mb-10 flex flex-col items-center">
-                            <img src="/logo-tubhier.png" alt="Tubhier Logo" className="h-16 w-auto object-contain mb-2" />
-                            <p className="text-gray-500 mt-2 italic">Sistema de Gestión de Reclutamiento</p>
+                    <div className="pt-8 pb-0 flex flex-col items-center">
+                        <h1 className="text-center text-3xl font-bold text-gray-800 uppercase tracking-normal leading-tight px-6 mb-2">
+                            Sistema de Gestión <br /> de Reclutamiento
+                        </h1>
+                        <div className="w-full h-32 relative overflow-hidden flex justify-center items-center">
+                            <img
+                                src={LogoSistema}
+                                alt="Logo Sistema"
+                                className="absolute w-[580px] h-auto max-w-none object-contain translate-x-[18%] translate-y-[4%]"
+                            />
                         </div>
+                    </div>
 
+                    <div className="px-8 pb-10 pt-2">
                         {error && (
                             <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 flex items-center gap-3 text-red-700 rounded-r-md animate-in fade-in slide-in-from-top-1">
                                 <AlertCircle size={20} />
@@ -72,19 +80,19 @@ const Login = () => {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Correo Electrónico
+                                    Usuario
                                 </label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                                        <Mail size={18} />
+                                        <User size={18} />
                                     </div>
                                     <input
-                                        type="email"
+                                        type="text"
                                         required
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
                                         className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
-                                        placeholder="ejemplo@empresa.com"
+                                        placeholder="Ingrese su nombre de usuario"
                                     />
                                 </div>
                             </div>

@@ -26,6 +26,7 @@ const UserManagement = () => {
         nombre: '',
         apellido: '',
         email: '',
+        alias: '',
         password: '',
         rol: ''
     });
@@ -65,6 +66,7 @@ const UserManagement = () => {
             nombre: '',
             apellido: '',
             email: '',
+            alias: '',
             password: '',
             rol: roles.length > 0 ? roles[roles.length - 1].nombre : ''
         });
@@ -77,6 +79,7 @@ const UserManagement = () => {
             nombre: user.nombre,
             apellido: user.apellido,
             email: user.email,
+            alias: user.alias || '',
             password: '', // Leave blank when editing
             rol: user.rol
         });
@@ -174,7 +177,8 @@ const UserManagement = () => {
     const filteredUsers = users.filter(u =>
         u.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
         u.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        u.email.toLowerCase().includes(searchTerm.toLowerCase())
+        u.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (u.alias && u.alias.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
     if (loading) {
@@ -218,7 +222,7 @@ const UserManagement = () => {
                         </div>
                         <input
                             type="text"
-                            placeholder="Buscar por nombre o email..."
+                            placeholder="Buscar por nombre, alias o email..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none sm:text-sm transition-all"
@@ -231,6 +235,7 @@ const UserManagement = () => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Usuario</th>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Alias</th>
                                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Email</th>
                                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Rol</th>
                                 <th className="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Acciones</th>
@@ -256,6 +261,9 @@ const UserManagement = () => {
                                                 <div className="text-xs text-gray-500">ID: {u._id.substring(0, 8)}...</div>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block">{u.alias}</div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-gray-600">{u.email}</div>
@@ -354,15 +362,27 @@ const UserManagement = () => {
                                 </div>
                             </div>
 
-                            <div className="space-y-1">
-                                <label className="text-sm font-semibold text-gray-700">Email</label>
-                                <input
-                                    type="email"
-                                    required
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                />
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-1">
+                                    <label className="text-sm font-semibold text-gray-700">Email</label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                                    />
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="text-sm font-semibold text-gray-700">Alias de Usuario</label>
+                                    <input
+                                        type="text"
+                                        value={formData.alias}
+                                        onChange={(e) => setFormData({ ...formData, alias: e.target.value })}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-blue-50/30"
+                                        placeholder="Auto-generado"
+                                    />
+                                </div>
                             </div>
 
                             {!editingUser && (

@@ -21,7 +21,7 @@ const DashboardLayout = () => {
                     <div className="flex justify-between h-16 items-center">
                         <div className="flex items-center gap-8">
                             <div className="flex-shrink-0 flex items-center">
-                                <img src="/logo-tubhier.png" alt="Tubhier Logo" className="h-10 w-auto object-contain" />
+                                <span className="text-xl font-bold text-gray-900 tracking-tight">Tubhier S.A.</span>
                             </div>
                             <nav className="hidden md:flex space-x-4">
                                 <Link to="/dashboard" className="flex items-center gap-2 px-3 py-2 rounded-md font-medium text-gray-900 bg-gray-100 hover:bg-gray-200">
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
                                 className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors border border-blue-100"
                             >
                                 <User size={16} />
-                                <span>{user.nombre} ({user.rol})</span>
+                                <span>{user.nombre} {user.apellido} ({user.rol})</span>
                             </Link>
                             <button
                                 onClick={handleLogout}
